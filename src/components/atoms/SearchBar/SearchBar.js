@@ -12,7 +12,6 @@ const InputWrapper = styled.div`
   align-items: center;
   flex-direction: row;
   border-radius: 10px;
-  margin: 3rem;
   
   ${({theme}) => theme.mq.standard}{
     width: 450px;

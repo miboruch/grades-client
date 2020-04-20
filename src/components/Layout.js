@@ -14,6 +14,11 @@ const StyledWrapper = styled.div`
   flex-direction: row;
 `;
 
+const ContentWrapper = styled.div`
+  width: 100%;
+  height: 100vh;
+`;
+
 const Layout = ({ children }) => {
   const [isMenuOpen, setMenuOpen] = useState(false);
 
@@ -28,7 +33,7 @@ const Layout = ({ children }) => {
         <StyledWrapper>
           <Hamburger isOpen={isMenuOpen} toggle={toggleMenu} />
           <Slider isOpen={isMenuOpen} />
-          {children}
+          <ContentWrapper>{children}</ContentWrapper>
         </StyledWrapper>
       </ThemeProvider>
     </>

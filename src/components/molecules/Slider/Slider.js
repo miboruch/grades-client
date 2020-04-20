@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import UserIcon from '../../../assets/icons/user.svg';
 import Button from '../../atoms/Button/Button';
+import ClipboardIcon from '../../../assets/icons/clipboard.svg';
+import SlideShowIcon from '../../../assets/icons/slideshow.svg';
 
 const StyledWrapper = styled.div`
   width: 100%;
@@ -20,11 +22,16 @@ const StyledWrapper = styled.div`
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
+  z-index: 900;
 
   ${({ theme }) => theme.mq.tablet} {
+    width: 70%;
+  }
+
+  ${({ theme }) => theme.mq.standard} {
     transform: translateX(0);
     position: static;
-    width: 20%;
+    width: 360px;
   }
 `;
 
@@ -73,10 +80,31 @@ const StyledNameHeading = styled(StyledHeading)`
 const StyledDescriptionParagraph = styled.p`
   font-size: 13px;
   margin-top: 0.5rem;
+  margin-bottom: 3rem;
 
   ${({ theme }) => theme.mq.standard} {
     font-size: 15px;
   }
+`;
+
+const StyledClipboardIcon = styled(ClipboardIcon)`
+  width: 20px;
+  height: 20px;
+  fill: ${({ theme }) => theme.color.main};
+  position: absolute;
+  top: 50%;
+  left: 3rem;
+  transform: translateY(-50%);
+`;
+
+const StyledSlideShowIcon = styled(SlideShowIcon)`
+  width: 20px;
+  height: 20px;
+  fill: #fff;
+  position: absolute;
+  top: 50%;
+  left: 3rem;
+  transform: translateY(-50%);
 `;
 
 const Slider = ({ isOpen }) => {
@@ -88,7 +116,14 @@ const Slider = ({ isOpen }) => {
       </IconWrapper>
       <StyledNameHeading>Tomasz Gądek</StyledNameHeading>
       <StyledDescriptionParagraph>Java specialist</StyledDescriptionParagraph>
-      <Button>Hello</Button>
+      <Button isActive={true}>
+        <StyledClipboardIcon />
+        Lista studentów
+      </Button>
+      <Button isActive={false}>
+        <StyledSlideShowIcon />
+        Laboratoria
+      </Button>
     </StyledWrapper>
   );
 };

@@ -1,10 +1,10 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 
 const StyledButton = styled.button`
-  width: 210px;
-  height: 40px;
+  width: 230px;
+  height: 45px;
   border-radius: 10px;
   background-color: ${({ isActive }) => (isActive ? '#fff' : 'transparent')};
   position: relative;
@@ -14,40 +14,30 @@ const StyledButton = styled.button`
   overflow: hidden;
   font-weight: 500;
   letter-spacing: 1px;
-  font-size: 16px;
+  font-size: 14px;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   flex-direction: row;
+  cursor: pointer;
+  padding-left: 4rem;
+  margin-bottom: 2rem;
+
+  ${({ isActive }) =>
+    isActive &&
+    css`
+      -webkit-box-shadow: 4px 4px 14px 0px rgba(4, 138, 131, 1);
+      -moz-box-shadow: 4px 4px 14px 0px rgba(4, 138, 131, 1);
+      box-shadow: 4px 4px 14px 0px rgba(4, 138, 131, 1);
+    `}
 
   &:focus {
     outline: none;
   }
-
-  &:hover {
-    color: ${({ theme }) => theme.color.main};
-    transition: color 0.14s ease;
-  }
-
-  &::before {
-    position: absolute;
-    content: '';
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 0;
-    background-color: #fff;
-    transition: all 0.25s ease;
-    z-index: -1;
-  }
-  &:hover::before {
-    height: 100%;
-    transition: all 0.25s ease;
-  }
 `;
 
 const Button = ({ children, isActive }) => {
-  return <StyledButton isActive={true}>{children}</StyledButton>;
+  return <StyledButton isActive={isActive}>{children}</StyledButton>;
 };
 
 Button.propTypes = {

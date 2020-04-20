@@ -1,8 +1,8 @@
 export const theme = {
   color: {
     main: '#009a93',
-    fontColor: '#bebebe',
-    secondFontColor: '#878787',
+    fontColor: '#878787',
+    secondFontColor: '#bebebe',
     searchBar: '#f4f4f4',
     lightThemeBackground: '#f1f1f1',
     lightThemeBackgroundGradient:

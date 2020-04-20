@@ -36,8 +36,8 @@ const StyledWrapper = styled.div`
 `;
 
 const StyledHeading = styled.h1`
-  letter-spacing: 3px;
-  font-size: 20px;
+  letter-spacing: 2px;
+  font-size: 18px;
   text-transform: uppercase;
   text-align: center;
 

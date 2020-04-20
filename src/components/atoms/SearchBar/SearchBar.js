@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import SearchIcon from '../../../assets/icons/loupe.svg';
 
 const InputWrapper = styled.div`
-  width: 250px;
+  width: 300px;
   height: 40px;
   background-color: ${({ theme }) => theme.color.searchBar};
   position: relative;
@@ -11,7 +11,7 @@ const InputWrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  border-radius: 10px;
+  border-radius: 20px;
   
   ${({theme}) => theme.mq.standard}{
     width: 450px;

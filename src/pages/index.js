@@ -9,13 +9,30 @@ import SEO from '../components/seo';
 import SearchBar from '../components/atoms/SearchBar/SearchBar';
 import Spinner from '../components/atoms/Spinner/Spinner';
 import MobileTable from '../components/molecules/MobileTable/MobileTable';
+import StandardTable from '../components/molecules/StandardTable/StandardTable';
+import Header from '../components/molecules/Header/Header';
 
 const StyledWrapper = styled.div`
   width: 100%;
   height: 100vh;
   display: flex;
   flex-direction: column;
-  padding: 4rem 1rem;
+  padding-bottom: 3rem;
+  align-items: center;
+  background-color: #fbfbfb;
+  border-bottom: 1px solid ${({ theme }) => theme.color.secondFontColor};
+  position: relative;
+`;
+
+const StyledHeader = styled.header`
+  width: 100%;
+  height: 100px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  margin-bottom: 2rem;
 `;
 
 const IndexPage = () => {
@@ -31,8 +48,12 @@ const IndexPage = () => {
       <StyledWrapper>
         {students ? (
           <>
-            <SearchBar />
+            {/*<StyledHeader>*/}
+            {/*  <SearchBar />*/}
+            {/*</StyledHeader>*/}
+            <Header />
             <MobileTable data={students} />
+            <StandardTable data={students} />
           </>
         ) : (
           <Spinner />
@@ -41,7 +62,5 @@ const IndexPage = () => {
     </Layout>
   );
 };
-
-// {students ? <SearchBar /> : <Spinner />}
 
 export default IndexPage;

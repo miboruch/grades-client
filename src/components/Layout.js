@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import './index.css';
 import GlobalStyle from '../styles/GlobalStyle';
 import { theme } from '../styles/theme';
+import Hamburger from './atoms/Hamburger/Hamburger';
+import Slider from './molecules/Slider/Slider';
 
 const StyledWrapper = styled.div`
   width: 100%;
@@ -12,11 +14,20 @@ const StyledWrapper = styled.div`
 
 const Layout = ({ children }) => {
   const [isMenuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen(!isMenuOpen);
+  };
+
   return (
     <>
       <GlobalStyle />
       <ThemeProvider theme={theme}>
-        <StyledWrapper>{children}</StyledWrapper>
+        <StyledWrapper>
+          <Hamburger isOpen={isMenuOpen} toggle={toggleMenu} />
+          <Slider isOpen={isMenuOpen} />
+          {children}
+        </StyledWrapper>
       </ThemeProvider>
     </>
   );

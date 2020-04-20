@@ -1,27 +1,4 @@
 export const theme = {
-  font: {
-    size: {
-      mobile: {
-        xs: '10px',
-        s: '12px',
-        m: '18px',
-        l: '20px',
-        xl: '24px',
-        title: '58px'
-      },
-      desktop: {
-        xs: '12px',
-        s: '16px',
-        m: '18px',
-        l: '21px',
-        xl: '46px',
-        title: '89px'
-      }
-    },
-    family: {
-
-    }
-  },
   color: {
     main: '#009a93',
     fontColor: '#bebebe',

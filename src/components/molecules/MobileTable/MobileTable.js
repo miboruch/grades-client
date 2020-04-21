@@ -6,19 +6,12 @@ import Table from '../Table/Table';
 import PropTypes from 'prop-types';
 import StandardTable from '../StandardTable/StandardTable';
 
-const StyledWrapper = styled.div`
+const StyledWrapper = styled(TableStyles.TableWrapperStyle)`
   width: 100%;
   height: 90%;
-  margin-top: 2rem;
-  overflow-y: scroll;
   background-color: #fff;
-  padding: 1rem;
   display: flex;
   justify-content: space-around;
-  border-radius: 15px;
-  -webkit-box-shadow: 1px 3px 13px 2px rgba(235, 228, 235, 1);
-  -moz-box-shadow: 1px 3px 13px 2px rgba(235, 228, 235, 1);
-  box-shadow: 1px 3px 13px 2px rgba(235, 228, 235, 1);
 
   ${({ theme }) => theme.mq.standard} {
     display: none;
@@ -39,7 +32,8 @@ const MobileTable = ({ data }) => {
       },
       {
         Header: 'Nr indexu',
-        accessor: 'index'
+        accessor: 'index',
+        Cell: (e) => <TableStyles.StyledBold>{e.value}</TableStyles.StyledBold>
       },
       {
         Header: 'Ocena',
@@ -47,7 +41,8 @@ const MobileTable = ({ data }) => {
       },
       {
         Header: 'Suma',
-        accessor: 'allPoints'
+        accessor: 'allPoints',
+        Cell: (e) => <TableStyles.StyledBold>{e.value}</TableStyles.StyledBold>
       },
       {
         Header: 'Szczegóły',

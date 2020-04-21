@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import SearchBar from '../../atoms/SearchBar/SearchBar';
+import MessageIcon from '../../../assets/icons/email.svg';
 
 const StyledHeader = styled.header`
   width: 100%;
@@ -15,6 +16,7 @@ const StyledHeader = styled.header`
   ${({ theme }) => theme.mq.standard} {
     padding: 0 3rem;
     justify-content: space-between;
+    height: 120px;
   }
 `;
 
@@ -41,18 +43,34 @@ const StyledSmallParagraph = styled(StyledParagraph)`
   font-size: 14px;
 `;
 
-const Header = ({handleChange}) => {
+const StyledContentWrapper = styled.section`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+`;
+
+const StyledMessageIcon = styled(MessageIcon)`
+  width: 25px;
+  height: 25px;
+  fill: ${({ theme }) => theme.color.main};
+`;
+
+const Header = ({ handleChange }) => {
   return (
     <StyledHeader>
-      <SearchBar handleChange={handleChange}/>
-      <StyledInfoBox>
-        <StyledParagraph>
-          Państwowa Wyższa Szkoła Zawodowa w Tarnowie
-        </StyledParagraph>
-        <StyledSmallParagraph>
-          Testowanie i jakość oprogramowania, 2019/2020
-        </StyledSmallParagraph>
-      </StyledInfoBox>
+      <SearchBar handleChange={handleChange} />
+      <StyledContentWrapper>
+        {/*<StyledMessageIcon />*/}
+        <StyledInfoBox>
+          <StyledParagraph>
+            Państwowa Wyższa Szkoła Zawodowa w Tarnowie
+          </StyledParagraph>
+          <StyledSmallParagraph>
+            Testowanie i jakość oprogramowania, 2020
+          </StyledSmallParagraph>
+        </StyledInfoBox>
+      </StyledContentWrapper>
     </StyledHeader>
   );
 };

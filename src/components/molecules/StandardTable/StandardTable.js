@@ -5,19 +5,11 @@ import * as TableStyles from '../../../styles/tableStyles';
 import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
 
-const StyledWrapper = styled.div`
+const StyledWrapper = styled(TableStyles.TableWrapperStyle)`
   display: none;
   width: 95%;
   height: 90%;
-  margin-top: 2rem;
-  overflow-y: scroll;
-  background-color: #fff;
-  padding: 1rem;
   justify-content: space-around;
-  border-radius: 15px;
-  -webkit-box-shadow: 1px 3px 13px 2px rgba(235, 228, 235, 1);
-  -moz-box-shadow: 1px 3px 13px 2px rgba(235, 228, 235, 1);
-  box-shadow: 1px 3px 13px 2px rgba(235, 228, 235, 1);
 
   ${({ theme }) => theme.mq.standard} {
     display: flex;
@@ -38,7 +30,8 @@ const StandardTable = ({ data }) => {
       },
       {
         Header: 'Nr indexu',
-        accessor: 'index'
+        accessor: 'index',
+        Cell: (e) => <TableStyles.StyledBold>{e.value}</TableStyles.StyledBold>
       },
       {
         Header: 'Grupa',
@@ -57,8 +50,13 @@ const StandardTable = ({ data }) => {
         accessor: 'homeworkPoints'
       },
       {
+        Header: 'Nieobecności',
+        accessor: 'absenceCounter'
+      },
+      {
         Header: 'Suma',
-        accessor: 'allPoints'
+        accessor: 'allPoints',
+        Cell: (e) => <TableStyles.StyledBold>{e.value}</TableStyles.StyledBold>
       },
       {
         Header: 'Szczegóły',

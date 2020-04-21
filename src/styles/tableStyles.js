@@ -2,6 +2,17 @@ import styled from 'styled-components';
 import UserIcon from '../assets/icons/user.svg';
 import ArrowIcon from '../assets/icons/arrow_half.svg';
 
+export const TableWrapperStyle = styled.div`
+  background-color: #fff;
+  padding: 1rem;
+  margin-top: 2rem;
+  overflow-y: scroll;
+  border-radius: 15px;
+  -webkit-box-shadow: 1px 3px 13px 2px rgba(235, 228, 235, 1);
+  -moz-box-shadow: 1px 3px 13px 2px rgba(235, 228, 235, 1);
+  box-shadow: 1px 3px 13px 2px rgba(235, 228, 235, 1);
+`;
+
 export const StyledTable = styled.table`
   width: 100%;
   max-height: 90%;
@@ -75,4 +86,9 @@ export const StyledArrowIcon = styled(ArrowIcon)`
   fill: ${({ theme }) => theme.color.secondFontColor};
   border: ${({ theme }) => `1px solid ${theme.color.secondFontColor}`};
   padding: 0.5rem;
+  margin-left: 1rem;
+`;
+
+export const StyledBold = styled.strong`
+  font-weight: 600;
 `;

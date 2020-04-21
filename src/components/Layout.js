@@ -6,24 +6,32 @@ import GlobalStyle from '../styles/GlobalStyle';
 import { theme } from '../styles/theme';
 import Hamburger from './atoms/Hamburger/Hamburger';
 import Slider from './molecules/Slider/Slider';
+import Header from './molecules/Header/Header';
 
 const StyledWrapper = styled.div`
   width: 100%;
   height: 100vh;
   display: flex;
   flex-direction: row;
+  overflow: hidden;
 `;
 
 const ContentWrapper = styled.div`
   width: 100%;
   height: 100vh;
+  position: relative;
 `;
 
-const Layout = ({ children }) => {
+const Layout = ({ render }) => {
   const [isMenuOpen, setMenuOpen] = useState(false);
+  const [indexNumber, setIndexNumber] = useState('');
 
   const toggleMenu = () => {
     setMenuOpen(!isMenuOpen);
+  };
+
+  const handleChange = (event) => {
+    setIndexNumber(event.target.value);
   };
 
   return (
@@ -33,7 +41,10 @@ const Layout = ({ children }) => {
         <StyledWrapper>
           <Hamburger isOpen={isMenuOpen} toggle={toggleMenu} />
           <Slider isOpen={isMenuOpen} />
-          <ContentWrapper>{children}</ContentWrapper>
+          <ContentWrapper>
+            <Header handleChange={handleChange} />
+            {render(indexNumber)}
+          </ContentWrapper>
         </StyledWrapper>
       </ThemeProvider>
     </>
@@ -41,7 +52,7 @@ const Layout = ({ children }) => {
 };
 
 Layout.propTypes = {
-  children: PropTypes.node.isRequired
+  render: PropTypes.func.isRequired
 };
 
 export default Layout;

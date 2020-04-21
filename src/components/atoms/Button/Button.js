@@ -23,6 +23,7 @@ const StyledButton = styled.button`
   cursor: pointer;
   padding-left: 4rem;
   margin-bottom: 2rem;
+  z-index: 7;
   -webkit-box-shadow: 4px 4px 14px 0px rgba(4, 138, 131, 1);
   -moz-box-shadow: 4px 4px 14px 0px rgba(4, 138, 131, 1);
   box-shadow: 4px 4px 14px 0px rgba(4, 138, 131, 1);

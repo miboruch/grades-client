@@ -71,14 +71,14 @@ const StyledChatIcon = styled(ChartIcon)`
   transform: translateY(-50%);
 `;
 
-const Header = ({ handleChange, toggleChart, isUserInfoPage }) => {
+const Header = ({ handleChange, toggleChart, isUserInfoPage, isChartOpen }) => {
   return (
     <StyledHeader>
       {isUserInfoPage ? (
         <Wrapper>
           <Button onClick={() => toggleChart()}>
             <StyledChatIcon />
-            Otwórz wykres
+            {isChartOpen ? 'Zamknij wykres' : 'Otwórz wykres'}
           </Button>
         </Wrapper>
       ) : (
@@ -101,7 +101,8 @@ const Header = ({ handleChange, toggleChart, isUserInfoPage }) => {
 Header.propTypes = {
   handleChange: PropTypes.func.isRequired,
   toggleChart: PropTypes.func.isRequired,
-  isUserInfoPage: PropTypes.bool
+  isUserInfoPage: PropTypes.bool,
+  isChartOpen: PropTypes.bool
 };
 
 export default Header;

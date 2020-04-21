@@ -51,6 +51,7 @@ const Layout = ({ render, isUserInfoPage }) => {
             <Header
               handleChange={handleChange}
               toggleChart={toggleChart}
+              isChartOpen={isChartOpen}
               isUserInfoPage={isUserInfoPage}
             />
             {render(indexNumber, isChartOpen)}

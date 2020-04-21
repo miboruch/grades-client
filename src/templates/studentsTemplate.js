@@ -20,10 +20,9 @@ const StyledWrapper = styled.div`
 `;
 
 const StudentsTemplate = ({ pageContext: { student, studentData } }) => {
-  console.log(student);
-  console.log(studentData);
   return (
     <Layout
+      isUserInfoPage={true}
       render={(indexNumber) => (
         <>
           <SEO title={`Student ${student.index}`} />

@@ -1,7 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import SearchBar from '../../atoms/SearchBar/SearchBar';
 import MessageIcon from '../../../assets/icons/email.svg';
+import Button from '../../atoms/Button/Button';
+import ChartIcon from '../../../assets/icons/chart.svg';
 
 const StyledHeader = styled.header`
   width: 100%;
@@ -17,6 +20,14 @@ const StyledHeader = styled.header`
     padding: 0 3rem;
     justify-content: space-between;
     height: 120px;
+  }
+`;
+
+const Wrapper = styled.div`
+  display: none;
+
+  ${({ theme }) => theme.mq.standard} {
+    display: block;
   }
 `;
 
@@ -50,18 +61,30 @@ const StyledContentWrapper = styled.section`
   flex-direction: row;
 `;
 
-const StyledMessageIcon = styled(MessageIcon)`
-  width: 25px;
-  height: 25px;
-  fill: ${({ theme }) => theme.color.main};
+const StyledChatIcon = styled(ChartIcon)`
+  width: 20px;
+  height: 20px;
+  fill: #fff;
+  position: absolute;
+  top: 50%;
+  left: 3rem;
+  transform: translateY(-50%);
 `;
 
-const Header = ({ handleChange }) => {
+const Header = ({ handleChange, toggleChart, isUserInfoPage }) => {
   return (
     <StyledHeader>
-      <SearchBar handleChange={handleChange} />
+      {isUserInfoPage ? (
+        <Wrapper>
+          <Button onClick={() => toggleChart()}>
+            <StyledChatIcon />
+            Otwórz wykres
+          </Button>
+        </Wrapper>
+      ) : (
+        <SearchBar handleChange={handleChange} />
+      )}
       <StyledContentWrapper>
-        {/*<StyledMessageIcon />*/}
         <StyledInfoBox>
           <StyledParagraph>
             Państwowa Wyższa Szkoła Zawodowa w Tarnowie
@@ -73,6 +96,12 @@ const Header = ({ handleChange }) => {
       </StyledContentWrapper>
     </StyledHeader>
   );
+};
+
+Header.propTypes = {
+  handleChange: PropTypes.func.isRequired,
+  toggleChart: PropTypes.func.isRequired,
+  isUserInfoPage: PropTypes.bool
 };
 
 export default Header;

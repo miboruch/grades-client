@@ -5,15 +5,9 @@ import * as TableStyles from '../../../styles/tableStyles';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
 
-const StyledWrapper = styled.div`
+const StyledWrapper = styled(TableStyles.TableWrapperStyle)`
   width: 95%;
   height: 20%;
-  padding: 1rem;
-  border-radius: 15px;
-  -webkit-box-shadow: 1px 3px 13px 2px rgba(235, 228, 235, 1);
-  -moz-box-shadow: 1px 3px 13px 2px rgba(235, 228, 235, 1);
-  box-shadow: 1px 3px 13px 2px rgba(235, 228, 235, 1);
-  margin-top: 2rem;
 `;
 
 const StudentInfoTable = ({ studentData }) => {
@@ -43,7 +37,7 @@ const StudentInfoTable = ({ studentData }) => {
 
   return (
     <StyledWrapper>
-      <Table data={studentData} columns={columns} />
+      <Table data={studentData} columns={columns} isStudentInfoPage={true}/>
     </StyledWrapper>
   );
 };

@@ -7,6 +7,7 @@ import { theme } from '../styles/theme';
 import Hamburger from './atoms/Hamburger/Hamburger';
 import Slider from './molecules/Slider/Slider';
 import Header from './molecules/Header/Header';
+import { graphql, useStaticQuery } from 'gatsby';
 
 const StyledWrapper = styled.div`
   width: 100%;
@@ -22,12 +23,17 @@ const ContentWrapper = styled.div`
   position: relative;
 `;
 
-const Layout = ({ render }) => {
+const Layout = ({ render, isUserInfoPage }) => {
   const [isMenuOpen, setMenuOpen] = useState(false);
+  const [isChartOpen, setChartOpen] = useState(false);
   const [indexNumber, setIndexNumber] = useState('');
 
   const toggleMenu = () => {
     setMenuOpen(!isMenuOpen);
+  };
+
+  const toggleChart = () => {
+    setChartOpen(!isChartOpen);
   };
 
   const handleChange = (event) => {
@@ -42,8 +48,12 @@ const Layout = ({ render }) => {
           <Hamburger isOpen={isMenuOpen} toggle={toggleMenu} />
           <Slider isOpen={isMenuOpen} />
           <ContentWrapper>
-            <Header handleChange={handleChange} />
-            {render(indexNumber)}
+            <Header
+              handleChange={handleChange}
+              toggleChart={toggleChart}
+              isUserInfoPage={isUserInfoPage}
+            />
+            {render(indexNumber, isChartOpen)}
           </ContentWrapper>
         </StyledWrapper>
       </ThemeProvider>
@@ -52,7 +62,12 @@ const Layout = ({ render }) => {
 };
 
 Layout.propTypes = {
-  render: PropTypes.func.isRequired
+  render: PropTypes.func.isRequired,
+  isUserInfoPage: PropTypes.bool
+};
+
+Layout.defaultProps = {
+  isUserInfoPage: false
 };
 
 export default Layout;

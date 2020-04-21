@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import UserIcon from '../assets/icons/user.svg';
 import ArrowIcon from '../assets/icons/arrow_half.svg';
+import PresenceIcon from '../assets/icons/checked.svg';
+import AbsenceIcon from '../assets/icons/ban.svg';
 
 export const TableWrapperStyle = styled.div`
   background-color: #fff;
@@ -18,6 +20,10 @@ export const StyledTable = styled.table`
   max-height: 90%;
   padding: 0 1rem;
   position: relative;
+
+  ${({ theme }) => theme.mq.standard} {
+    ${({ isStudentInfoPage }) => (isStudentInfoPage ? '60%' : '100%')};
+  }
 `;
 
 export const StyledTableHeading = styled.th`
@@ -91,4 +97,18 @@ export const StyledArrowIcon = styled(ArrowIcon)`
 
 export const StyledBold = styled.strong`
   font-weight: 600;
+`;
+
+export const StyledPresenceIcon = styled(PresenceIcon)`
+  width: 25px;
+  height: 25px;
+  fill: ${({ theme }) => theme.color.main};
+  margin-left: 1rem;
+`;
+
+export const StyledAbsenceIcon = styled(AbsenceIcon)`
+  width: 25px;
+  height: 25px;
+  fill: red;
+  margin-left: 1rem;
 `;

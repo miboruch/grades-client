@@ -4,7 +4,7 @@ import * as TableStyles from '../../../styles/tableStyles';
 import PropTypes from 'prop-types';
 import { useTable } from 'react-table';
 
-const Table = ({ data, columns }) => {
+const Table = ({ data, columns, isStudentInfoPage }) => {
   const {
     getTableProps,
     getTableBodyProps,
@@ -16,7 +16,7 @@ const Table = ({ data, columns }) => {
     data
   });
   return (
-    <TableStyles.StyledTable {...getTableProps()}>
+    <TableStyles.StyledTable isStudentInfoPage={isStudentInfoPage} {...getTableProps()}>
       <thead>
         {headerGroups.map((headerGroup) => (
           <TableStyles.StyledTableRow {...headerGroup.getHeaderGroupProps()}>
@@ -52,7 +52,12 @@ const Table = ({ data, columns }) => {
 
 Table.propTypes = {
   data: PropTypes.array.isRequired,
-  columns: PropTypes.any.isRequired
+  columns: PropTypes.any.isRequired,
+  isStudentInfoPage: PropTypes.bool
 };
+
+Table.defaultProps = {
+  isStudentInfoPage: false
+}
 
 export default Table;

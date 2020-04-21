@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { Link } from 'gatsby';
 import UserIcon from '../../../assets/icons/user.svg';
 import Button from '../../atoms/Button/Button';
 import ClipboardIcon from '../../../assets/icons/clipboard.svg';
@@ -116,10 +117,12 @@ const Slider = ({ isOpen }) => {
       </IconWrapper>
       <StyledNameHeading>Tomasz Gądek</StyledNameHeading>
       <StyledDescriptionParagraph>Java specialist</StyledDescriptionParagraph>
-      <Button isActive={true}>
-        <StyledClipboardIcon />
-        Lista studentów
-      </Button>
+      <Link to={'/'}>
+        <Button isActive={true}>
+          <StyledClipboardIcon />
+          Lista studentów
+        </Button>
+      </Link>
       <Button isActive={false}>
         <StyledSlideShowIcon />
         Laboratoria

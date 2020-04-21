@@ -4,16 +4,9 @@ import PropTypes from 'prop-types';
 import Table from '../Table/Table';
 import * as TableStyles from '../../../styles/tableStyles';
 
-const StyledWrapper = styled.div`
+const StyledWrapper = styled(TableStyles.TableWrapperStyle)`
   width: 95%;
-  height: 70%;
-  padding: 1rem;
-  border-radius: 15px;
-  -webkit-box-shadow: 1px 3px 13px 2px rgba(235, 228, 235, 1);
-  -moz-box-shadow: 1px 3px 13px 2px rgba(235, 228, 235, 1);
-  box-shadow: 1px 3px 13px 2px rgba(235, 228, 235, 1);
-  margin-top: 2rem;
-  overflow-y: scroll;
+  height: 66%;
 `;
 
 const StudentLabInfo = ({ labInfo }) => {
@@ -22,8 +15,10 @@ const StudentLabInfo = ({ labInfo }) => {
       {
         Header: 'Laboratorium',
         accessor: 'labs',
-        Cell: ({ row: {index}, rows }) => (
-          <TableStyles.StyledBold>Lab #{rows.length - index}</TableStyles.StyledBold>
+        Cell: ({ row: { index }, rows }) => (
+          <TableStyles.StyledBold>
+            Lab #{rows.length - index}
+          </TableStyles.StyledBold>
         )
       },
       {
@@ -35,7 +30,11 @@ const StudentLabInfo = ({ labInfo }) => {
         accessor: 'presence',
         Cell: (e) => (
           <TableStyles.StyledBold>
-            {e.value ? 'YES' : 'NO'}
+            {e.value ? (
+              <TableStyles.StyledPresenceIcon />
+            ) : (
+              <TableStyles.StyledAbsenceIcon />
+            )}
           </TableStyles.StyledBold>
         )
       },
@@ -49,7 +48,7 @@ const StudentLabInfo = ({ labInfo }) => {
 
   return (
     <StyledWrapper>
-      <Table data={labInfo} columns={columns} />
+      <Table data={labInfo} columns={columns} isStudentInfoPage={true} />
     </StyledWrapper>
   );
 };

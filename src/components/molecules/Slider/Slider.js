@@ -31,7 +31,7 @@ const StyledWrapper = styled.div`
   ${({ theme }) => theme.mq.standard} {
     transform: translateX(0);
     position: static;
-    width: 360px;
+    width: 400px;
   }
 `;
 

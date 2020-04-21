@@ -10,11 +10,17 @@ const InputWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 1rem;
   flex-direction: row;
   border-radius: 20px;
   
-  ${({theme}) => theme.mq.standard}{
+  ${({theme}) => theme.mq.tablet}{
+    width: 550px;
+  }
+
+  ${({ theme }) => theme.mq.standard} {
     width: 450px;
+    margin-top: 0;
   }
 `;
 
@@ -48,10 +54,13 @@ const StyledSearchIcon = styled(SearchIcon)`
   box-sizing: content-box;
 `;
 
-const SearchBar = ({ onChange }) => {
+const SearchBar = ({ handleChange }) => {
   return (
     <InputWrapper>
-      <StyledInput placeholder={'Szukaj studenta'} />
+      <StyledInput
+        placeholder={'Szukaj studenta'}
+        onChange={(e) => handleChange(e)}
+      />
       <StyledSearchIcon />
     </InputWrapper>
   );

@@ -41,10 +41,10 @@ const StyledSmallParagraph = styled(StyledParagraph)`
   font-size: 14px;
 `;
 
-const Header = () => {
+const Header = ({handleChange}) => {
   return (
     <StyledHeader>
-      <SearchBar />
+      <SearchBar handleChange={handleChange}/>
       <StyledInfoBox>
         <StyledParagraph>
           Państwowa Wyższa Szkoła Zawodowa w Tarnowie

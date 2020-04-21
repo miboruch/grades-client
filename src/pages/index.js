@@ -24,23 +24,24 @@ const StyledWrapper = styled.div`
   position: relative;
 `;
 
-const StyledHeader = styled.header`
-  width: 100%;
-  height: 100px;
-  background-color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  margin-bottom: 2rem;
-`;
-
 const IndexPage = () => {
   const [students, setStudents] = useState(null);
-  useEffect(async () => {
+  const [indexNumber, setIndexNumber] = useState('');
+
+  const fetchData = async () => {
     const { data } = await axios.get(API_URL);
     setStudents(data);
+  };
+
+  useEffect(() => {
+    (async () => {
+      await fetchData();
+    })();
   }, []);
+
+  const handleChange = (event) => {
+    setIndexNumber(event.target.value);
+  };
 
   return (
     <Layout>
@@ -48,12 +49,17 @@ const IndexPage = () => {
       <StyledWrapper>
         {students ? (
           <>
-            {/*<StyledHeader>*/}
-            {/*  <SearchBar />*/}
-            {/*</StyledHeader>*/}
-            <Header />
-            <MobileTable data={students} />
-            <StandardTable data={students} />
+            <Header handleChange={handleChange} />
+            <MobileTable
+              data={students.filter((student) =>
+                student.index.includes(indexNumber)
+              )}
+            />
+            <StandardTable
+              data={students.filter((student) =>
+                student.index.includes(indexNumber)
+              )}
+            />
           </>
         ) : (
           <Spinner />

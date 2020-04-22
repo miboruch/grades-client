@@ -24,17 +24,22 @@ const ChartWrapper = styled.section`
   left: 0;
   z-index: 5;
   transition: opacity 0.5s ease, visibility 0.5s ease;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  display: none;
+  display: flex;
 
   ${({ theme }) => theme.mq.standard} {
-    display: flex;
+    justify-content: center;
   }
 `;
 
 const StyledResponsiveContainer = styled(ResponsiveContainer)`
   display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
+  padding-left: 1rem;
+
+  ${({ theme }) => theme.mq.standard} {
+    padding-left: 0;
+  }
 `;
 
 const Chart = ({ isOpen, data, toggleChart }) => {

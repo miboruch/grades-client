@@ -7,7 +7,7 @@ const StyledButton = styled.button`
   height: 45px;
   border-radius: 10px;
   background-color: ${({ isActive, theme }) =>
-    isActive ? '#fff' : theme.color.main};
+  isActive ? '#fff' : theme.color.main};
   position: relative;
   font-family: 'Gilroy';
   border: none;
@@ -28,7 +28,7 @@ const StyledButton = styled.button`
   -moz-box-shadow: 4px 4px 14px 0px rgba(4, 138, 131, 1);
   box-shadow: 4px 4px 14px 0px rgba(4, 138, 131, 1);
   transition: all 0.5s ease;
-
+  
   &:focus {
     outline: none;
   }

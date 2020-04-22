@@ -24,7 +24,7 @@ const StudentLabInfo = ({ labInfo }) => {
       {
         Header: 'Data',
         accessor: 'dateOfLab',
-        Cell: e => new Date(e.value).toLocaleDateString()
+        Cell: (e) => new Date(e.value).toLocaleDateString()
       },
       {
         Header: 'Obecność',
@@ -42,7 +42,12 @@ const StudentLabInfo = ({ labInfo }) => {
       {
         Header: 'Punkty',
         accessor: 'points',
-        Cell: (e) => <TableStyles.StyledBold>{e.value} pkt</TableStyles.StyledBold>
+        Cell: (e) =>
+          e.value > 0 ? (
+            <TableStyles.BoldGreenFont>{e.value} pkt</TableStyles.BoldGreenFont>
+          ) : (
+            <TableStyles.BoldRedFont>{e.value} pkt</TableStyles.BoldRedFont>
+          )
       }
     ],
     []

@@ -8,7 +8,7 @@ import ChartIcon from '../../../assets/icons/chart.svg';
 
 const StyledHeader = styled.header`
   width: 100%;
-  height: 120px;
+  height: 150px;
   padding: 0;
   display: flex;
   justify-content: center;
@@ -19,11 +19,12 @@ const StyledHeader = styled.header`
   ${({ theme }) => theme.mq.standard} {
     padding: 0 3rem;
     justify-content: space-between;
+    height: 120px;
   }
 `;
 
 const Wrapper = styled.div`
-  display: none;
+  margin-top: 2.5rem;
 
   ${({ theme }) => theme.mq.standard} {
     display: block;

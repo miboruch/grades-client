@@ -114,3 +114,12 @@ export const StyledAbsenceIcon = styled(AbsenceIcon)`
   fill: red;
   margin-left: 1rem;
 `;
+
+export const BoldGreenFont = styled.p`
+  color: ${({theme}) => theme.color.main};
+  font-weight: 600;
+`;
+
+export const BoldRedFont = styled(BoldGreenFont)`
+  color: red;
+`;

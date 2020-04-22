@@ -22,21 +22,6 @@ const StyledWrapper = styled.div`
   }
 `;
 
-const StyledSmallInfo = styled.div`
-  width: 95%;
-  margin-top: 2rem;
-  padding: 0 2rem;
-`;
-
-const StyledParagraph = styled.p`
-  letter-spacing: 1px;
-  font-size: 12px;
-  font-weight: 500;
-  color: ${({ theme }) => theme.color.fontColor};
-  margin: 0;
-  padding: 0;
-`;
-
 const StudentsTemplate = ({
   pageContext: { student, studentData, nextGradeStudents }
 }) => {
@@ -53,14 +38,7 @@ const StudentsTemplate = ({
             toggleChart={toggleChart}
           />
           <StyledWrapper>
-            <StyledSmallInfo>
-              {student.mark !== 5 && (
-                <StyledParagraph>
-                  Do oceny {mark} brakuje {allPoints - student.allPoints} pkt
-                </StyledParagraph>
-              )}
-            </StyledSmallInfo>
-            <StudentInfoTable studentData={[student]} />
+            <StudentInfoTable studentData={[student]} nextMark={mark} nextMarkPoints={allPoints - student.allPoints} />
             <StudentLabInfo labInfo={studentData.labs} />
           </StyledWrapper>
         </>

@@ -9,7 +9,23 @@ const StyledWrapper = styled(TableStyles.TableWrapperStyle)`
   width: 95%;
 `;
 
-const StudentInfoTable = ({ studentData }) => {
+const MarkCell = styled.td`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+`;
+
+const StyledSmallParagraph = styled.p`
+  font-size: 8px;
+  padding-left: 1rem;
+  
+  ${({theme}) => theme.mq.standard}{
+    font-size: 10px;
+  }
+`;
+
+const StudentInfoTable = ({ studentData, nextMark, nextMarkPoints }) => {
   const columns = React.useMemo(
     () => [
       {
@@ -23,7 +39,15 @@ const StudentInfoTable = ({ studentData }) => {
       },
       {
         Header: 'Ocena',
-        accessor: 'mark'
+        accessor: 'mark',
+        Cell: (e) => (
+          <MarkCell>
+            {e.value}
+            <StyledSmallParagraph>
+              {nextMarkPoints} pkt do {nextMark}
+            </StyledSmallParagraph>
+          </MarkCell>
+        )
       },
       {
         Header: 'Suma',
@@ -44,7 +68,9 @@ const StudentInfoTable = ({ studentData }) => {
 };
 
 StudentInfoTable.propTypes = {
-  studentData: PropTypes.array.isRequired
+  studentData: PropTypes.array.isRequired,
+  nextMark: PropTypes.number,
+  nextMarkPoints: PropTypes.number
 };
 
 export default StudentInfoTable;

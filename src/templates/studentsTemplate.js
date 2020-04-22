@@ -22,13 +22,15 @@ const StyledWrapper = styled.div`
 `;
 
 const StudentsTemplate = ({ pageContext: { student, studentData } }) => {
+  console.log(student);
+  console.log(studentData);
   return (
     <Layout
       isUserInfoPage={true}
-      render={(indexNumber, isChartOpen) => (
+      render={(indexNumber, isChartOpen, toggleChart) => (
         <>
           <SEO title={`Student ${student.index}`} />
-          <Chart isOpen={isChartOpen} data={studentData.labs} />
+          <Chart isOpen={isChartOpen} data={studentData.labs} toggleChart={toggleChart} />
           <StyledWrapper>
             <StudentInfoTable studentData={[student]} />
             <StudentLabInfo labInfo={studentData.labs} />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import {
@@ -11,11 +11,12 @@ import {
   Legend,
   ResponsiveContainer
 } from 'recharts';
+import { useOutsideClick } from '../../../utils/customHooks';
 
 const ChartWrapper = styled.section`
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.9);
   opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
   visibility: ${({ isOpen }) => (isOpen ? 'visible' : 'hidden')};
   position: absolute;
@@ -32,14 +33,25 @@ const ChartWrapper = styled.section`
   }
 `;
 
-const Chart = ({ isOpen, data }) => {
+const StyledResponsiveContainer = styled(ResponsiveContainer)`
+  display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
+`;
+
+const Chart = ({ isOpen, data, toggleChart }) => {
+  const chartRef = useRef(null);
   const updatedData = data.map((item, index) => ({
     ...item,
     labNumber: `Lab #${data.length - index}`
   }));
+  useOutsideClick(chartRef, isOpen, toggleChart);
   return (
     <ChartWrapper isOpen={isOpen}>
-      <ResponsiveContainer width='80%' height={300}>
+      <StyledResponsiveContainer
+        width='80%'
+        height={300}
+        isOpen={isOpen}
+        ref={chartRef}
+      >
         <LineChart data={updatedData}>
           <XAxis dataKey='labNumber' />
           <YAxis />
@@ -53,14 +65,15 @@ const Chart = ({ isOpen, data }) => {
             activeDot={{ r: 6 }}
           />
         </LineChart>
-      </ResponsiveContainer>
+      </StyledResponsiveContainer>
     </ChartWrapper>
   );
 };
 
 Chart.propTypes = {
   isOpen: PropTypes.bool.isRequired,
-  data: PropTypes.array.isRequired
+  data: PropTypes.array.isRequired,
+  toggleChart: PropTypes.func.isRequired
 };
 
 export default Chart;

@@ -30,6 +30,15 @@ const StudentInfoTable = ({ studentData }) => {
       {
         Header: 'Grupa',
         accessor: 'group'
+      },
+      {
+        Header: 'Ocena',
+        accessor: 'mark'
+      },
+      {
+        Header: 'Suma',
+        accessor: 'allPoints',
+        Cell: (e) => <TableStyles.StyledBold>{e.value}</TableStyles.StyledBold>
       }
     ],
     []
@@ -37,7 +46,7 @@ const StudentInfoTable = ({ studentData }) => {
 
   return (
     <StyledWrapper>
-      <Table data={studentData} columns={columns} isStudentInfoPage={true}/>
+      <Table data={studentData} columns={columns} isStudentInfoPage={true} />
     </StyledWrapper>
   );
 };

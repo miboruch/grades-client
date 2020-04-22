@@ -54,7 +54,7 @@ const Layout = ({ render, isUserInfoPage }) => {
               isChartOpen={isChartOpen}
               isUserInfoPage={isUserInfoPage}
             />
-            {render(indexNumber, isChartOpen)}
+            {render(indexNumber, isChartOpen, toggleChart)}
           </ContentWrapper>
         </StyledWrapper>
       </ThemeProvider>

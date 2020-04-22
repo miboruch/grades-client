@@ -40,7 +40,8 @@ const StudentLabInfo = ({ labInfo }) => {
       },
       {
         Header: 'Punkty',
-        accessor: 'points'
+        accessor: 'points',
+        Cell: (e) => <TableStyles.StyledBold>{e.value}</TableStyles.StyledBold>
       }
     ],
     []

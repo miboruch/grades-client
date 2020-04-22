@@ -108,6 +108,11 @@ const StyledSlideShowIcon = styled(SlideShowIcon)`
   transform: translateY(-50%);
 `;
 
+const StyledLink = styled.a`
+  text-transform: none;
+  color: inherit;
+`;
+
 const Slider = ({ isOpen }) => {
   return (
     <StyledWrapper isOpen={isOpen}>
@@ -123,10 +128,18 @@ const Slider = ({ isOpen }) => {
           Lista studentów
         </Button>
       </Link>
-      <Button isActive={false}>
-        <StyledSlideShowIcon />
-        Laboratoria
-      </Button>
+      <StyledLink
+        href={
+          'https://drive.google.com/drive/folders/1aMv62b4TQYrD8ydSy2DDYXSPglc0YZKm'
+        }
+        rel={'noopener noreferrer'}
+        target={'_blank'}
+      >
+        <Button isActive={false}>
+          <StyledSlideShowIcon />
+          Laboratoria
+        </Button>
+      </StyledLink>
     </StyledWrapper>
   );
 };

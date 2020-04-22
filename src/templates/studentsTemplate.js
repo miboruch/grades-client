@@ -5,7 +5,6 @@ import SEO from '../components/seo';
 import StudentInfoTable from '../components/molecules/StudentInfoTable/StudentInfoTable';
 import StudentLabInfo from '../components/molecules/StudentLabInfo/StudentLabInfo';
 import Chart from '../components/molecules/Chart/Chart';
-import { getLastStudentFromNextMark } from '../utils/helpers';
 
 const StyledWrapper = styled.div`
   width: 100%;
@@ -23,9 +22,8 @@ const StyledWrapper = styled.div`
 `;
 
 const StudentsTemplate = ({
-  pageContext: { student, studentData, nextGradeStudents }
+  pageContext: { student, studentData }
 }) => {
-  const { mark, allPoints } = getLastStudentFromNextMark(nextGradeStudents);
   return (
     <Layout
       isUserInfoPage={true}
@@ -38,7 +36,7 @@ const StudentsTemplate = ({
             toggleChart={toggleChart}
           />
           <StyledWrapper>
-            <StudentInfoTable studentData={[student]} nextMark={mark} nextMarkPoints={allPoints - student.allPoints} />
+            <StudentInfoTable studentData={[student]}/>
             <StudentLabInfo labInfo={studentData.labs} />
           </StyledWrapper>
         </>

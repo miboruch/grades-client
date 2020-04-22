@@ -3,29 +3,12 @@ import styled from 'styled-components';
 import Table from '../Table/Table';
 import * as TableStyles from '../../../styles/tableStyles';
 import PropTypes from 'prop-types';
-import { Link } from 'gatsby';
 
 const StyledWrapper = styled(TableStyles.TableWrapperStyle)`
   width: 95%;
 `;
 
-const MarkCell = styled.td`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-`;
-
-const StyledSmallParagraph = styled.p`
-  font-size: 8px;
-  padding-left: 1rem;
-  
-  ${({theme}) => theme.mq.standard}{
-    font-size: 10px;
-  }
-`;
-
-const StudentInfoTable = ({ studentData, nextMark, nextMarkPoints }) => {
+const StudentInfoTable = ({ studentData }) => {
   const columns = React.useMemo(
     () => [
       {
@@ -39,15 +22,7 @@ const StudentInfoTable = ({ studentData, nextMark, nextMarkPoints }) => {
       },
       {
         Header: 'Ocena',
-        accessor: 'mark',
-        Cell: (e) => (
-          <MarkCell>
-            {e.value}
-            <StyledSmallParagraph>
-              {nextMarkPoints} pkt do {nextMark}
-            </StyledSmallParagraph>
-          </MarkCell>
-        )
+        accessor: 'mark'
       },
       {
         Header: 'Suma',
@@ -68,9 +43,7 @@ const StudentInfoTable = ({ studentData, nextMark, nextMarkPoints }) => {
 };
 
 StudentInfoTable.propTypes = {
-  studentData: PropTypes.array.isRequired,
-  nextMark: PropTypes.number,
-  nextMarkPoints: PropTypes.number
+  studentData: PropTypes.array.isRequired
 };
 
 export default StudentInfoTable;

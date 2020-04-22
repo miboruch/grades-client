@@ -20,9 +20,11 @@ export const StyledTable = styled.table`
   max-height: 90%;
   padding: 0 1rem;
   position: relative;
+  font-size: 13px;
 
   ${({ theme }) => theme.mq.standard} {
-    ${({ isStudentInfoPage }) => (isStudentInfoPage ? '60%' : '100%')};
+    font-size: ${({ isStudentInfoPage }) =>
+      isStudentInfoPage ? '24px' : '14px'};
   }
 `;
 
@@ -51,7 +53,7 @@ export const StyledTd = styled.td`
 export const StyledTableRow = styled.tr`
   width: 100%;
   height: 60px !important;
-  font-size: 14px;
+  font-size: inherit;
   font-weight: 400;
   transition: background-color 0.3s ease;
 

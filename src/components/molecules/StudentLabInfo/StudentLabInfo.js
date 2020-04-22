@@ -6,7 +6,7 @@ import * as TableStyles from '../../../styles/tableStyles';
 
 const StyledWrapper = styled(TableStyles.TableWrapperStyle)`
   width: 95%;
-  height: 66%;
+  height: 64%;
 `;
 
 const StudentLabInfo = ({ labInfo }) => {
@@ -23,7 +23,8 @@ const StudentLabInfo = ({ labInfo }) => {
       },
       {
         Header: 'Data',
-        accessor: 'dateOfLab'
+        accessor: 'dateOfLab',
+        Cell: e => new Date(e.value).toLocaleDateString()
       },
       {
         Header: 'Obecność',
@@ -41,7 +42,7 @@ const StudentLabInfo = ({ labInfo }) => {
       {
         Header: 'Punkty',
         accessor: 'points',
-        Cell: (e) => <TableStyles.StyledBold>{e.value}</TableStyles.StyledBold>
+        Cell: (e) => <TableStyles.StyledBold>{e.value} pkt</TableStyles.StyledBold>
       }
     ],
     []
@@ -49,7 +50,7 @@ const StudentLabInfo = ({ labInfo }) => {
 
   return (
     <StyledWrapper>
-      <Table data={labInfo} columns={columns} isStudentInfoPage={true} />
+      <Table data={labInfo} columns={columns} />
     </StyledWrapper>
   );
 };

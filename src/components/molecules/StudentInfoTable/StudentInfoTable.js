@@ -7,21 +7,11 @@ import { Link } from 'gatsby';
 
 const StyledWrapper = styled(TableStyles.TableWrapperStyle)`
   width: 95%;
-  height: 20%;
 `;
 
 const StudentInfoTable = ({ studentData }) => {
   const columns = React.useMemo(
     () => [
-      {
-        Header: () => null,
-        id: 'userIcon',
-        Cell: () => (
-          <TableStyles.IconWrapper>
-            <TableStyles.StyledUserIcon />
-          </TableStyles.IconWrapper>
-        )
-      },
       {
         Header: 'Nr indexu',
         accessor: 'index',
@@ -38,7 +28,9 @@ const StudentInfoTable = ({ studentData }) => {
       {
         Header: 'Suma',
         accessor: 'allPoints',
-        Cell: (e) => <TableStyles.StyledBold>{e.value}</TableStyles.StyledBold>
+        Cell: (e) => (
+          <TableStyles.StyledBold>{e.value} pkt</TableStyles.StyledBold>
+        )
       }
     ],
     []

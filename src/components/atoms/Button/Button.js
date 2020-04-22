@@ -27,6 +27,7 @@ const StyledButton = styled.button`
   -webkit-box-shadow: 4px 4px 14px 0px rgba(4, 138, 131, 1);
   -moz-box-shadow: 4px 4px 14px 0px rgba(4, 138, 131, 1);
   box-shadow: 4px 4px 14px 0px rgba(4, 138, 131, 1);
+  transition: all 0.5s ease;
 
   &:focus {
     outline: none;

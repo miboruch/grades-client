@@ -1,17 +1,19 @@
 export const API_URL = 'http://tomaszgadek.com/api/students';
 
 /*
-  * Get all students with mark passed in an argument, and pick the last student points,
-  * with the lowest number of points
-  *
-  * for example:
-  *  - Student 1: mark 3.0, points: 15,
-  *  - Student 2: mark 3.0, points: 14,
-  *  - Student 3: mark 3.0, points: 13
-  *
-  * Pick student with 13 points -> then calculate
+ * Argument - array of 5 students with next mark
+ * (current: 3 -> 3.5, current 3.5 -> 4, ...)
+ *
+ * We have to pick one student conditionally
+ * if mark is not 5 then pick one student with the lowest number of points
+ *
+ * if mark is 5, then pick the student with the highest number of points
  */
-export const getLastStudentPointsWithMark = (students, mark) => {
-  const studentsWithTheLowestGrade = students.filter(student => student.mark === mark);
-  return Math.min(...studentsWithTheLowestGrade.points);
-}
+
+export const getLastStudentFromNextMark = (nextMarkStudents) => {
+  return nextMarkStudents[0].mark !== 5
+    ? nextMarkStudents.reduce((previous, current) =>
+        previous.points < current.points ? previous : current
+      )
+    : nextMarkStudents[0];
+};

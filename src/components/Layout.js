@@ -7,7 +7,6 @@ import { theme } from '../styles/theme';
 import Hamburger from './atoms/Hamburger/Hamburger';
 import Slider from './molecules/Slider/Slider';
 import Header from './molecules/Header/Header';
-import { graphql, useStaticQuery } from 'gatsby';
 
 const StyledWrapper = styled.div`
   width: 100%;

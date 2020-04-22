@@ -8,7 +8,7 @@ import ChartIcon from '../../../assets/icons/chart.svg';
 
 const StyledHeader = styled.header`
   width: 100%;
-  height: 150px;
+  height: 120px;
   padding: 0;
   display: flex;
   justify-content: center;
@@ -19,7 +19,6 @@ const StyledHeader = styled.header`
   ${({ theme }) => theme.mq.standard} {
     padding: 0 3rem;
     justify-content: space-between;
-    height: 120px;
   }
 `;
 
@@ -75,12 +74,14 @@ const Header = ({ handleChange, toggleChart, isUserInfoPage, isChartOpen }) => {
   return (
     <StyledHeader>
       {isUserInfoPage ? (
-        <Wrapper>
-          <Button onClick={() => toggleChart()}>
-            <StyledChatIcon />
-            {isChartOpen ? 'Zamknij wykres' : 'Otwórz wykres'}
-          </Button>
-        </Wrapper>
+        <>
+          <Wrapper>
+            <Button onClick={() => toggleChart()}>
+              <StyledChatIcon />
+              {isChartOpen ? 'Zamknij wykres' : 'Otwórz wykres'}
+            </Button>
+          </Wrapper>
+        </>
       ) : (
         <SearchBar handleChange={handleChange} />
       )}

@@ -4,6 +4,8 @@ import Table from '../Table/Table';
 import * as TableStyles from '../../../styles/tableStyles';
 import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
+import PageTransitionProvider from '../../../providers/PageTransitionProvider';
+import AniLink from 'gatsby-plugin-transition-link/AniLink';
 
 const StyledWrapper = styled(TableStyles.TableWrapperStyle)`
   display: none;
@@ -63,9 +65,9 @@ const StandardTable = ({ data }) => {
         id: 'redirect',
         Cell: ({ row: { values } }) => {
           return (
-            <Link to={`/student/${values.index}`}>
+            <PageTransitionProvider to={`/student/${values.index}`}>
               <TableStyles.StyledArrowIcon />
-            </Link>
+            </PageTransitionProvider>
           );
         }
       }

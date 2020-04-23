@@ -6,6 +6,7 @@ import UserIcon from '../../../assets/icons/user.svg';
 import Button from '../../atoms/Button/Button';
 import ClipboardIcon from '../../../assets/icons/clipboard.svg';
 import SlideShowIcon from '../../../assets/icons/slideshow.svg';
+import PageTransitionProvider from '../../../providers/PageTransitionProvider';
 
 const StyledWrapper = styled.div`
   width: 100%;
@@ -33,6 +34,7 @@ const StyledWrapper = styled.div`
     transform: translateX(0);
     position: static;
     width: 400px;
+    padding: 4.3rem 1rem 1rem 1rem;
   }
 `;
 
@@ -113,21 +115,27 @@ const StyledLink = styled.a`
   color: inherit;
 `;
 
+const StyledGatsbyLink = styled(Link)`
+  color: #fff;
+`;
+
 const Slider = ({ isOpen }) => {
   return (
     <StyledWrapper isOpen={isOpen}>
-      <StyledHeading>Testowanie i jakość oprogramowania</StyledHeading>
+      <PageTransitionProvider to={'/'}>
+        <StyledHeading>Testowanie i jakość oprogramowania</StyledHeading>
+      </PageTransitionProvider>
       <IconWrapper>
         <StyledUserIcon />
       </IconWrapper>
       <StyledNameHeading>Tomasz Gądek</StyledNameHeading>
       <StyledDescriptionParagraph>Java specialist</StyledDescriptionParagraph>
-      <Link to={'/'}>
+      <PageTransitionProvider to={'/'}>
         <Button isActive={true}>
           <StyledClipboardIcon />
           Lista studentów
         </Button>
-      </Link>
+      </PageTransitionProvider>
       <StyledLink
         href={
           'https://drive.google.com/drive/folders/1aMv62b4TQYrD8ydSy2DDYXSPglc0YZKm'

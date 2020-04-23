@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import Table from '../Table/Table';
 import * as TableStyles from '../../../styles/tableStyles';
-import PropTypes from 'prop-types';
 
 const StyledWrapper = styled(TableStyles.TableWrapperStyle)`
   width: 95%;

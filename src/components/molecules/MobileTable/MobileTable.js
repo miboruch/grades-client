@@ -5,6 +5,7 @@ import * as TableStyles from '../../../styles/tableStyles';
 import Table from '../Table/Table';
 import PropTypes from 'prop-types';
 import StandardTable from '../StandardTable/StandardTable';
+import PageTransitionProvider from '../../../providers/PageTransitionProvider';
 
 const StyledWrapper = styled(TableStyles.TableWrapperStyle)`
   width: 100%;
@@ -49,9 +50,12 @@ const MobileTable = ({ data }) => {
         id: 'redirect',
         Cell: ({ row: { values } }) => {
           return (
-            <Link to={`/student/${values.index}`}>
+            <PageTransitionProvider
+              to={`/student/${values.index}`}
+              index={values.index}
+            >
               <TableStyles.StyledArrowIcon />
-            </Link>
+            </PageTransitionProvider>
           );
         }
       }

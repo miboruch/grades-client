@@ -65,7 +65,7 @@ const StandardTable = ({ data }) => {
         id: 'redirect',
         Cell: ({ row: { values } }) => {
           return (
-            <PageTransitionProvider to={`/student/${values.index}`}>
+            <PageTransitionProvider to={`/student/${values.index}`} index={values.index}>
               <TableStyles.StyledArrowIcon />
             </PageTransitionProvider>
           );

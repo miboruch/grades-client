@@ -1,11 +1,6 @@
 const axios = require('axios');
 const path = require('path');
 
-const getStudentsData = async () => {
-  const { data } = await axios.get('http://tomaszgadek.com/api/students');
-  return data;
-};
-
 const getStudentData = async (index) => {
   const { data } = await axios.get(
     `http://tomaszgadek.com/api/students/${index}`
@@ -13,18 +8,30 @@ const getStudentData = async (index) => {
   return data;
 };
 
+const getStudentsData = async () => {
+  const { data } = await axios.get('http://tomaszgadek.com/api/students');
+
+  return Promise.all(
+    data.map(async (student) => {
+      const result = await getStudentData(student.index);
+
+      return { ...student, ...result };
+    })
+  );
+};
+
 exports.createPages = async ({ page, actions }) => {
   const { createPage } = actions;
   const studentTemplate = path.resolve('src/templates/studentsTemplate.js');
   const studentsData = await getStudentsData();
 
-  studentsData.forEach(async (student) => {
+  await Promise.all(studentsData.map(async student => {
     const studentData = await getStudentData(student.index);
 
     createPage({
       path: `/student/${student.index}`,
       component: studentTemplate,
-      context: { student, studentData }
+      context: { studentData, student }
     });
-  });
+  }))
 };

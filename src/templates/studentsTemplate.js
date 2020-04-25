@@ -21,9 +21,7 @@ const StyledWrapper = styled.div`
   }
 `;
 
-const StudentsTemplate = ({
-  pageContext: { student, studentData }
-}) => {
+const StudentsTemplate = ({ pageContext: { student, studentData } }) => {
   return (
     <Layout
       isUserInfoPage={true}
@@ -36,7 +34,7 @@ const StudentsTemplate = ({
             toggleChart={toggleChart}
           />
           <StyledWrapper>
-            <StudentInfoTable studentData={[student]}/>
+            <StudentInfoTable studentData={[student]} />
             <StudentLabInfo labInfo={studentData.labs} />
           </StyledWrapper>
         </>

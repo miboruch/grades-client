@@ -61,6 +61,7 @@ const SearchBar = ({ handleChange }) => {
         placeholder={'Szukaj studenta'}
         onChange={(e) => handleChange(e)}
         type={'number'}
+        min={0}
       />
       <StyledSearchIcon />
     </InputWrapper>

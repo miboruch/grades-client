@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
@@ -122,7 +122,7 @@ const StyledGatsbyLink = styled(Link)`
 const Slider = ({ isOpen }) => {
   return (
     <StyledWrapper isOpen={isOpen}>
-      <PageTransitionProvider to={'/'}>
+      <PageTransitionProvider to={'/'} index={''}>
         <StyledHeading>Testowanie i jakość oprogramowania</StyledHeading>
       </PageTransitionProvider>
       <IconWrapper>
@@ -130,7 +130,7 @@ const Slider = ({ isOpen }) => {
       </IconWrapper>
       <StyledNameHeading>Tomasz Gądek</StyledNameHeading>
       <StyledDescriptionParagraph>Java specialist</StyledDescriptionParagraph>
-      <PageTransitionProvider to={'/'}>
+      <PageTransitionProvider to={'/'} index={''}>
         <Button isActive={true}>
           <StyledClipboardIcon />
           Lista studentów

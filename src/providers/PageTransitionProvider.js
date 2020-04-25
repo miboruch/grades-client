@@ -24,11 +24,11 @@ const createBox = (index) => {
   headingWrapper.style.overflow = 'hidden';
 
   const textNode = document.createTextNode(
-    index ? index : 'Testowanie i jakość oprogramowania'
+    index ? index : 'TiJO'
   );
 
   heading.appendChild(textNode);
-  heading.style.fontSize = '45px';
+  heading.style.fontSize = '80px';
   heading.style.fontFamily = 'Gilroy';
   heading.style.color = '#009a93';
   heading.style.fontWeight = '600';

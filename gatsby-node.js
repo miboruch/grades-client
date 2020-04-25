@@ -18,6 +18,10 @@ exports.createPages = async ({ page, actions }) => {
   const studentTemplate = path.resolve('src/templates/studentsTemplate.js');
   const studentsData = await getStudentsData();
 
+  const students = studentsData.map((student, index) => {
+    return { ...student, position: ++index };
+  });
+
   studentsData.forEach(async (student) => {
     const studentData = await getStudentData(student.index);
 

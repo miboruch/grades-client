@@ -24,11 +24,15 @@ const MobileTable = ({ data }) => {
     () => [
       {
         Header: () => null,
-        id: 'userIcon',
-        Cell: () => (
-          <TableStyles.IconWrapper>
-            <TableStyles.StyledUserIcon />
-          </TableStyles.IconWrapper>
+        id: 'position',
+        accessor: 'position',
+        Cell: (e) => (
+          <TableStyles.StyledPositionWrapper>
+            {e.value}
+            <TableStyles.IconWrapper>
+              <TableStyles.StyledUserIcon />
+            </TableStyles.IconWrapper>
+          </TableStyles.StyledPositionWrapper>
         )
       },
       {

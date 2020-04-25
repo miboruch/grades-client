@@ -28,7 +28,10 @@ const IndexPage = () => {
 
   const fetchData = async () => {
     const { data } = await axios.get(API_URL);
-    setStudents(data);
+    const students = data.map((student, index) => {
+      return { ...student, position: ++index };
+    });
+    setStudents(students);
   };
 
   useEffect(() => {

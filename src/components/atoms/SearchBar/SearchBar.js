@@ -13,8 +13,8 @@ const InputWrapper = styled.div`
   margin-top: 1rem;
   flex-direction: row;
   border-radius: 20px;
-  
-  ${({theme}) => theme.mq.tablet}{
+
+  ${({ theme }) => theme.mq.tablet} {
     width: 550px;
   }
 
@@ -60,6 +60,7 @@ const SearchBar = ({ handleChange }) => {
       <StyledInput
         placeholder={'Szukaj studenta'}
         onChange={(e) => handleChange(e)}
+        type={'number'}
       />
       <StyledSearchIcon />
     </InputWrapper>

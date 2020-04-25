@@ -2,8 +2,8 @@ import React, { useRef } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import {
-  LineChart,
-  Line,
+  AreaChart,
+  Area,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -57,19 +57,27 @@ const Chart = ({ isOpen, data, toggleChart }) => {
         isOpen={isOpen}
         ref={chartRef}
       >
-        <LineChart data={updatedData}>
+        <AreaChart data={updatedData}>
+          <defs>
+            <linearGradient id='chartColor' x1='0' y1='0' x2='0' y2='1'>
+              <stop offset='5%' stopColor='#009a93' stopOpacity={0.8} />
+              <stop offset='95%' stopColor='#009a93' stopOpacity={0} />
+            </linearGradient>
+          </defs>
           <XAxis dataKey='labNumber' />
           <YAxis />
           <CartesianGrid strokeDasharray='3 3' />
           <Tooltip />
           <Legend />
-          <Line
+          <Area
             type='monotone'
             dataKey='points'
             stroke='#009a93'
             activeDot={{ r: 6 }}
+            fillOpacity={1}
+            fill={'url(#chartColor)'}
           />
-        </LineChart>
+        </AreaChart>
       </StyledResponsiveContainer>
     </ChartWrapper>
   );

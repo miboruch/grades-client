@@ -22,7 +22,7 @@ const ContentWrapper = styled.div`
   position: relative;
 `;
 
-const Layout = ({ render, isUserInfoPage }) => {
+const Layout = ({ render, isUserInfoPage, isDarkTheme }) => {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [isChartOpen, setChartOpen] = useState(false);
   const [indexNumber, setIndexNumber] = useState('');
@@ -45,7 +45,7 @@ const Layout = ({ render, isUserInfoPage }) => {
       <ThemeProvider theme={theme}>
         <StyledWrapper>
           <Hamburger isOpen={isMenuOpen} toggle={toggleMenu} />
-          <Slider isOpen={isMenuOpen} />
+          <Slider isOpen={isMenuOpen} isDarkTheme={isDarkTheme}/>
           <ContentWrapper>
             <Header
               handleChange={handleChange}

@@ -16,6 +16,7 @@ const StyledWrapper = styled.div`
   flex-direction: column;
   padding-bottom: 3rem;
   align-items: center;
+  //background-color: #1b2026;
   background-color: #fbfbfb;
 
   ${({ theme }) => theme.mq.standard} {

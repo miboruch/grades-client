@@ -5,11 +5,16 @@ import PresenceIcon from '../assets/icons/checked.svg';
 import AbsenceIcon from '../assets/icons/ban.svg';
 
 export const TableWrapperStyle = styled.div`
+  //background-color: #272a34;
   background-color: #fff;
   padding: 1rem;
   margin-top: 2rem;
   overflow-y: scroll;
   border-radius: 15px;
+  //-webkit-box-shadow: 1px 3px 13px 2px rgba(0, 0, 0, 1);
+  //-moz-box-shadow: 1px 3px 13px 2px rgba(0, 0, 0, 1);
+  //box-shadow: 1px 3px 13px 2px rgba(0, 0, 0, 1);
+  //color: #fff;
   -webkit-box-shadow: 1px 3px 13px 2px rgba(235, 228, 235, 1);
   -moz-box-shadow: 1px 3px 13px 2px rgba(235, 228, 235, 1);
   box-shadow: 1px 3px 13px 2px rgba(235, 228, 235, 1);
@@ -33,6 +38,8 @@ export const StyledTableHeading = styled.th`
   font-size: 12px;
   font-weight: 400;
   color: ${({ theme }) => theme.color.fontColor};
+  //border-bottom: 1px solid #000;
+  //border-right: 1px solid #000;
   border-bottom: 1px solid #f4f4f4;
   border-right: 1px solid #f4f4f4;
 
@@ -44,6 +51,8 @@ export const StyledTableHeading = styled.th`
 export const StyledTd = styled.td`
   border-bottom: 1px solid #f4f4f4;
   border-right: 1px solid #f4f4f4;
+  //border-bottom: 1px solid #000;
+  //border-right: 1px solid #000;
 
   &:last-child {
     border-right: 0;

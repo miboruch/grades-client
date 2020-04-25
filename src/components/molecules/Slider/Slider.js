@@ -119,9 +119,9 @@ const StyledGatsbyLink = styled(Link)`
   color: #fff;
 `;
 
-const Slider = ({ isOpen }) => {
+const Slider = ({ isOpen, isDarkTheme }) => {
   return (
-    <StyledWrapper isOpen={isOpen}>
+    <StyledWrapper isOpen={isOpen} isDarkTheme={isDarkTheme}>
       <PageTransitionProvider to={'/'} index={''}>
         <StyledHeading>Testowanie i jakość oprogramowania</StyledHeading>
       </PageTransitionProvider>
@@ -153,7 +153,12 @@ const Slider = ({ isOpen }) => {
 };
 
 Slider.propTypes = {
-  isOpen: PropTypes.bool.isRequired
+  isOpen: PropTypes.bool.isRequired,
+  isDarkTheme: PropTypes.bool
+};
+
+Slider.defaultProps = {
+  isDarkTheme: false
 };
 
 export default Slider;

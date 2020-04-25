@@ -14,6 +14,7 @@ const StyledHeader = styled.header`
   justify-content: center;
   align-items: center;
   flex-direction: row;
+  //background-color: #1b2026;
   background-color: #fff;
 
   ${({ theme }) => theme.mq.standard} {

@@ -45,14 +45,24 @@ const StyledResponsiveContainer = styled(ResponsiveContainer)`
   }
 `;
 
+const Cursor = styled.div`
+  width: 150px;
+  height: 60px;
+  background-color: red;
+  color: #fff;
+`;
+
 const Chart = ({ isOpen, data, toggleChart }) => {
   const { isDarkTheme } = useContext(ThemeContext);
   const chartRef = useRef(null);
+
   const updatedData = data.map((item, index) => ({
     ...item,
     labNumber: `Lab #${data.length - index}`
   }));
+
   useOutsideClick(chartRef, isOpen, toggleChart);
+
   return (
     <ChartWrapper isOpen={isOpen} isDarkTheme={isDarkTheme}>
       <StyledResponsiveContainer
@@ -68,10 +78,18 @@ const Chart = ({ isOpen, data, toggleChart }) => {
               <stop offset='95%' stopColor={'#07886F'} stopOpacity={0} />
             </linearGradient>
           </defs>
-          <XAxis dataKey='labNumber' />
-          <YAxis />
-          <CartesianGrid strokeDasharray='3 3' />
-          <Tooltip />
+          <XAxis dataKey='labNumber' stroke={isDarkTheme ? '#fff' : '#aaa'} />
+          <YAxis stroke={isDarkTheme ? '#fff' : '#aaa'} />
+          <CartesianGrid strokeDasharray='2 2' />
+          <Tooltip
+            contentStyle={{ color: '#2d2d2d', fontWeight: 'bold' }}
+            itemStyle={{
+              color: '#2d2d2d',
+              fontSize: '12px',
+              fontWeight: '500'
+            }}
+            viewBox={{ x: 0, y: 0, width: 250, height: 60 }}
+          />
           <Legend />
           <Area
             type='monotone'

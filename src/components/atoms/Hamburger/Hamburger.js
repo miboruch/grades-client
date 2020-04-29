@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
+import { ThemeContext } from '../../../context/ThemeContext';
 
 const StyledHamburger = styled.button`
   cursor: pointer;
@@ -34,10 +35,17 @@ const InnerHamburger = styled.div`
   &::after {
     content: '';
     height: 1px;
-    background: ${({ isOpen, theme }) => (isOpen ? '#fff' : theme.color.main)};
+    background-color: ${({ isDarkTheme, theme }) =>
+      isDarkTheme ? '#fff' : theme.color.main};
     position: absolute;
     left: 0;
     transition: all 0.5s ease;
+
+    ${({ isOpen }) =>
+      isOpen &&
+      css`
+        background-color: #fff;
+      `}
   }
   ::before {
     width: ${({ isOpen }) => (isOpen ? '32px' : '26px')};
@@ -62,9 +70,10 @@ const InnerHamburger = styled.div`
 `;
 
 const Hamburger = ({ isOpen, toggle }) => {
+  const { isDarkTheme } = useContext(ThemeContext);
   return (
     <StyledHamburger onClick={() => toggle()}>
-      <InnerHamburger isOpen={isOpen} />
+      <InnerHamburger isOpen={isOpen} isDarkTheme={isDarkTheme} />
     </StyledHamburger>
   );
 };

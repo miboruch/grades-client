@@ -2,10 +2,8 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import Table from '../Table/Table';
 import * as TableStyles from '../../../styles/tableStyles';
-import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import PageTransitionProvider from '../../../providers/PageTransitionProvider';
-import AniLink from 'gatsby-plugin-transition-link/AniLink';
 import { ThemeContext } from '../../../context/ThemeContext';
 
 const StyledWrapper = styled(TableStyles.TableWrapperStyle)`

@@ -19,6 +19,7 @@ const StyledWrapper = styled.div`
   align-items: center;
   background-color: ${({ isDarkTheme, theme }) =>
     isDarkTheme ? theme.color.backgroundDark : '#fbfbfb'};
+  transition: background-color 0.4s ease;
 
   ${({ theme }) => theme.mq.standard} {
     height: calc(100% - 60px);

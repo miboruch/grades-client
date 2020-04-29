@@ -1,14 +1,14 @@
 import React, { useContext, useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import PropTypes from 'prop-types';
-import './index.css';
 import GlobalStyle from '../styles/GlobalStyle';
 import { theme } from '../styles/theme';
 import Hamburger from './atoms/Hamburger/Hamburger';
 import Slider from './molecules/Slider/Slider';
 import Header from './molecules/Header/Header';
 import { ThemeContext } from '../context/ThemeContext';
-import ToggleCheckbox from './atoms/ToggleCheckbox/ToggleCheckbox';
+
+import './index.css';
 
 const StyledWrapper = styled.div`
   width: 100%;
@@ -29,8 +29,7 @@ const Layout = ({ render, isUserInfoPage }) => {
   const [isChartOpen, setChartOpen] = useState(false);
   const [indexNumber, setIndexNumber] = useState('');
 
-  const { isDarkTheme, toggleTheme } = useContext(ThemeContext);
-  console.log(isDarkTheme);
+  const { isDarkTheme } = useContext(ThemeContext);
 
   const toggleMenu = () => {
     setMenuOpen(!isMenuOpen);

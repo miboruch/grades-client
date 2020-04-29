@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import styled from 'styled-components';
 import * as TableStyles from '../../../styles/tableStyles';
 import PropTypes from 'prop-types';
 import { useTable } from 'react-table';
@@ -24,7 +23,10 @@ const Table = ({ data, columns, isStudentInfoPage }) => {
     >
       <thead>
         {headerGroups.map((headerGroup) => (
-          <TableStyles.StyledTableRow {...headerGroup.getHeaderGroupProps()} isDarkTheme={isDarkTheme}>
+          <TableStyles.StyledTableRow
+            {...headerGroup.getHeaderGroupProps()}
+            isDarkTheme={isDarkTheme}
+          >
             {headerGroup.headers.map((column) => (
               <TableStyles.StyledTableHeading
                 {...column.getHeaderProps()}

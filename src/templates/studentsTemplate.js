@@ -17,6 +17,7 @@ const StyledWrapper = styled.div`
   background-color: ${({ isDarkTheme, theme }) =>
     isDarkTheme ? theme.color.backgroundDark : '#fbfbfb'};
   position: relative;
+  transition: background-color 0.4s ease;
 
   ${({ theme }) => theme.mq.standard} {
     height: calc(100% - 60px);

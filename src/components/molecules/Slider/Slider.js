@@ -1,7 +1,6 @@
-import React, { useContext, useRef } from 'react';
+import React, { useContext } from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
-import { Link } from 'gatsby';
 import UserIcon from '../../../assets/icons/user.svg';
 import Button from '../../atoms/Button/Button';
 import ClipboardIcon from '../../../assets/icons/clipboard.svg';
@@ -22,7 +21,7 @@ const StyledWrapper = styled.div`
   padding-top: 7rem;
   transform: ${({ isOpen }) =>
     isOpen ? 'translateX(0)' : 'translateX(-100%)'};
-  transition: all 0.8s ease;
+  transition: background 0.8s ease;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -179,7 +178,7 @@ const Slider = ({ isOpen }) => {
       <StyledDescriptionParagraph>Java specialist</StyledDescriptionParagraph>
       <ButtonWrapper>
         <PageTransitionProvider to={'/'} index={''}>
-          <Button isActive={true} isDarkTheme={isDarkTheme} isMenu={true}>
+          <Button isDarkTheme={isDarkTheme} isMenu={true}>
             <StyledClipboardIcon />
             Lista studentów
           </Button>
@@ -192,7 +191,7 @@ const Slider = ({ isOpen }) => {
         rel={'noopener noreferrer'}
         target={'_blank'}
       >
-        <Button isActive={false} isMenu={true}>
+        <Button isMenu={true}>
           <StyledSlideShowIcon />
           Laboratoria
         </Button>
@@ -212,8 +211,7 @@ const Slider = ({ isOpen }) => {
 };
 
 Slider.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
-  isDarkTheme: PropTypes.bool
+  isOpen: PropTypes.bool.isRequired
 };
 
 Slider.defaultProps = {

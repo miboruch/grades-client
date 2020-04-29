@@ -2,11 +2,10 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import SearchBar from '../../atoms/SearchBar/SearchBar';
-import MessageIcon from '../../../assets/icons/email.svg';
 import Button from '../../atoms/Button/Button';
 import ChartIcon from '../../../assets/icons/chart.svg';
-import { ThemeContext } from '../../../context/ThemeContext';
 import ToggleCheckbox from '../../atoms/ToggleCheckbox/ToggleCheckbox';
+import { ThemeContext } from '../../../context/ThemeContext';
 
 const StyledHeader = styled.header`
   width: 100%;
@@ -17,7 +16,6 @@ const StyledHeader = styled.header`
   align-items: center;
   position: relative;
   flex-direction: row;
-  //background-color: #1b2026;
   background: ${({ isDarkTheme, theme }) =>
     isDarkTheme ? theme.color.tableBackgroundDark : '#fff'};
   transition: all 0.4s ease;
@@ -97,6 +95,7 @@ const StyledChatIcon = styled(ChartIcon)`
 
 const Header = ({ handleChange, toggleChart, isUserInfoPage, isChartOpen }) => {
   const { isDarkTheme, toggleTheme } = useContext(ThemeContext);
+
   return (
     <StyledHeader isDarkTheme={isDarkTheme}>
       {isUserInfoPage ? (

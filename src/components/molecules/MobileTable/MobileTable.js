@@ -1,10 +1,8 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { Link } from 'gatsby';
 import * as TableStyles from '../../../styles/tableStyles';
 import Table from '../Table/Table';
 import PropTypes from 'prop-types';
-import StandardTable from '../StandardTable/StandardTable';
 import PageTransitionProvider from '../../../providers/PageTransitionProvider';
 import { ThemeContext } from '../../../context/ThemeContext';
 

@@ -1,9 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import Layout from '../components/Layout';
-import SEO from '../components/seo';
-import Slider from '../components/molecules/Slider/Slider';
-import { Link } from 'gatsby';
 import PageTransitionProvider from '../providers/PageTransitionProvider';
 
 const StyledWrapper = styled.div`
@@ -43,7 +39,9 @@ const NotFoundPage = () => {
   const mouseMoveEvent = (event) => {
     const [pageX, pageY] = [event.pageX, event.pageY];
 
-    event.target.style = `transform: translate(${pageX/20}px, ${pageY/20}px)`;
+    event.target.style = `transform: translate(${pageX / 20}px, ${
+      pageY / 20
+    }px)`;
   };
 
   return (

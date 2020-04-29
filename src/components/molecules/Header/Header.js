@@ -6,6 +6,7 @@ import MessageIcon from '../../../assets/icons/email.svg';
 import Button from '../../atoms/Button/Button';
 import ChartIcon from '../../../assets/icons/chart.svg';
 import { ThemeContext } from '../../../context/ThemeContext';
+import ToggleCheckbox from '../../atoms/ToggleCheckbox/ToggleCheckbox';
 
 const StyledHeader = styled.header`
   width: 100%;
@@ -14,6 +15,7 @@ const StyledHeader = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
   flex-direction: row;
   //background-color: #1b2026;
   background: ${({ isDarkTheme, theme }) =>
@@ -32,6 +34,18 @@ const Wrapper = styled.div`
 
   ${({ theme }) => theme.mq.standard} {
     display: block;
+  }
+`;
+
+const CheckboxWrapper = styled.div`
+  position: absolute;
+  top: 3rem;
+  right: 1.5rem;
+  transform: translateY(-50%);
+
+  ${({ theme }) => theme.mq.standard} {
+    top: 50%;
+    right: 3rem;
   }
 `;
 
@@ -68,7 +82,8 @@ const StyledContentWrapper = styled.section`
 const StyledChatIcon = styled(ChartIcon)`
   width: 20px;
   height: 20px;
-  fill: #fff;
+  fill: ${({ theme, isDarkTheme }) =>
+    isDarkTheme ? theme.color.mainDark : theme.color.main};
   position: absolute;
   top: 50%;
   left: 3rem;
@@ -82,8 +97,8 @@ const Header = ({ handleChange, toggleChart, isUserInfoPage, isChartOpen }) => {
       {isUserInfoPage ? (
         <>
           <Wrapper>
-            <Button onClick={() => toggleChart()}>
-              <StyledChatIcon />
+            <Button onClick={() => toggleChart()} isActive={true}>
+              <StyledChatIcon isDarkTheme={isDarkTheme} />
               {isChartOpen ? 'Zamknij wykres' : 'Otwórz wykres'}
             </Button>
           </Wrapper>
@@ -101,6 +116,9 @@ const Header = ({ handleChange, toggleChart, isUserInfoPage, isChartOpen }) => {
           </StyledSmallParagraph>
         </StyledInfoBox>
       </StyledContentWrapper>
+      <CheckboxWrapper>
+        <ToggleCheckbox isChecked={isDarkTheme} toggleFunction={toggleTheme} />
+      </CheckboxWrapper>
     </StyledHeader>
   );
 };

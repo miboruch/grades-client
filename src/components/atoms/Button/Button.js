@@ -8,10 +8,10 @@ const StyledButton = styled.button`
   height: 45px;
   border-radius: 10px;
   background-color: ${({ isActive, theme }) =>
-    isActive ? '#fff' : theme.color.main};
+    isActive ? '#fff' : 'transparent'};
+  border: ${({ isActive }) => !isActive && `1px solid #f5f5f5`};
   position: relative;
   font-family: 'Gilroy';
-  border: none;
   color: ${({ isActive, theme }) => (isActive ? theme.color.main : '#fff')};
   overflow: hidden;
   font-weight: 500;
@@ -37,9 +37,9 @@ const StyledButton = styled.button`
         isActive ? '#fff' : 'transparent'};
       color: ${({ isActive, theme }) =>
         isActive ? theme.color.mainDark : '#fff'};
-      -webkit-box-shadow: 4px 4px 14px 0px rgba(0, 0, 0, 1);
-      -moz-box-shadow: 4px 4px 14px 0px rgba(0, 0, 0, 1);
-      box-shadow: 4px 4px 14px 0px rgba(0, 0, 0, 1);
+      -webkit-box-shadow: 4px 4px 14px 2px rgba(19, 21, 41, 1);
+      -moz-box-shadow: 4px 4px 14px 2px rgba(19, 21, 41, 1);
+      box-shadow: 4px 4px 14px 2px rgba(19, 21, 41, 1);
     `}
 
   &:focus {

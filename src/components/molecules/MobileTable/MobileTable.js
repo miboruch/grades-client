@@ -11,7 +11,6 @@ import { ThemeContext } from '../../../context/ThemeContext';
 const StyledWrapper = styled(TableStyles.TableWrapperStyle)`
   width: 100%;
   height: 90%;
-  background-color: #fff;
   display: flex;
   justify-content: space-around;
 
@@ -21,7 +20,7 @@ const StyledWrapper = styled(TableStyles.TableWrapperStyle)`
 `;
 
 const MobileTable = ({ data }) => {
-  const {isDarkTheme} = useContext(ThemeContext);
+  const { isDarkTheme } = useContext(ThemeContext);
   const columns = React.useMemo(
     () => [
       {
@@ -71,7 +70,7 @@ const MobileTable = ({ data }) => {
 
   return (
     <StyledWrapper isDarkTheme={isDarkTheme}>
-      <Table data={data} columns={columns}/>
+      <Table data={data} columns={columns} />
     </StyledWrapper>
   );
 };

@@ -7,9 +7,6 @@ const defaultState = {
 
 export const ThemeContext = createContext(defaultState);
 
-const supportsDarkMode = () =>
-  window.matchMedia('(prefers-color-scheme: dark)').matches === true;
-
 const ThemeContextProvider = ({ children }) => {
   const [isDarkTheme, setDarkTheme] = useState(false);
 
@@ -20,13 +17,8 @@ const ThemeContextProvider = ({ children }) => {
 
   useEffect(() => {
     const theme = JSON.parse(localStorage.getItem('isDark'));
-    if (theme) {
-      setDarkTheme(theme);
-    } else if (supportsDarkMode()) {
-      setDarkTheme(true);
-    } else{
-      setDarkTheme(false);
-    }
+
+    theme ? setDarkTheme(theme) : setDarkTheme(false);
   }, []);
 
   return (

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useContext, useRef } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import {
@@ -12,11 +12,13 @@ import {
   ResponsiveContainer
 } from 'recharts';
 import { useOutsideClick } from '../../../utils/customHooks';
+import { ThemeContext } from '../../../context/ThemeContext';
 
 const ChartWrapper = styled.section`
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.9);
+  background: ${({ isDarkTheme, theme }) =>
+    isDarkTheme ? theme.color.mainDarkGradient : 'rgba(255, 255, 255, 0.9)'};
   opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
   visibility: ${({ isOpen }) => (isOpen ? 'visible' : 'hidden')};
   position: absolute;
@@ -27,6 +29,7 @@ const ChartWrapper = styled.section`
   justify-content: flex-start;
   align-items: center;
   display: flex;
+  color: ${({ isDarkTheme }) => (isDarkTheme ? '#f5f5f5' : '#2d2d2d')};
 
   ${({ theme }) => theme.mq.standard} {
     justify-content: center;
@@ -43,6 +46,7 @@ const StyledResponsiveContainer = styled(ResponsiveContainer)`
 `;
 
 const Chart = ({ isOpen, data, toggleChart }) => {
+  const { isDarkTheme } = useContext(ThemeContext);
   const chartRef = useRef(null);
   const updatedData = data.map((item, index) => ({
     ...item,
@@ -50,7 +54,7 @@ const Chart = ({ isOpen, data, toggleChart }) => {
   }));
   useOutsideClick(chartRef, isOpen, toggleChart);
   return (
-    <ChartWrapper isOpen={isOpen}>
+    <ChartWrapper isOpen={isOpen} isDarkTheme={isDarkTheme}>
       <StyledResponsiveContainer
         width='80%'
         height={300}
@@ -60,8 +64,16 @@ const Chart = ({ isOpen, data, toggleChart }) => {
         <AreaChart data={updatedData}>
           <defs>
             <linearGradient id='chartColor' x1='0' y1='0' x2='0' y2='1'>
-              <stop offset='5%' stopColor='#eee' stopOpacity={0.8} />
-              <stop offset='95%' stopColor='#eee' stopOpacity={0} />
+              <stop
+                offset='5%'
+                stopColor={isDarkTheme ? '#27293d' : 'eee'}
+                stopOpacity={0.8}
+              />
+              <stop
+                offset='95%'
+                stopColor={isDarkTheme ? '#27293d' : 'eee'}
+                stopOpacity={0}
+              />
             </linearGradient>
           </defs>
           <XAxis dataKey='labNumber' />
@@ -72,7 +84,7 @@ const Chart = ({ isOpen, data, toggleChart }) => {
           <Area
             type='monotone'
             dataKey='points'
-            stroke='#009a93'
+            stroke={isDarkTheme ? '#f5f5f5' : '#009a93'}
             activeDot={{ r: 6 }}
             fillOpacity={1}
             fill={'url(#chartColor)'}

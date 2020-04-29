@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import Layout from '../components/Layout';
 import SEO from '../components/seo';
 import StudentInfoTable from '../components/molecules/StudentInfoTable/StudentInfoTable';
 import StudentLabInfo from '../components/molecules/StudentLabInfo/StudentLabInfo';
 import Chart from '../components/molecules/Chart/Chart';
+import { ThemeContext } from '../context/ThemeContext';
 
 const StyledWrapper = styled.div`
   width: 100%;
@@ -13,7 +14,8 @@ const StyledWrapper = styled.div`
   flex-direction: column;
   padding-bottom: 3rem;
   align-items: center;
-  background-color: #fbfbfb;
+  background-color: ${({ isDarkTheme, theme }) =>
+    isDarkTheme ? theme.color.backgroundDark : '#fbfbfb'};
   position: relative;
 
   ${({ theme }) => theme.mq.standard} {
@@ -22,6 +24,7 @@ const StyledWrapper = styled.div`
 `;
 
 const StudentsTemplate = ({ pageContext: { student, studentData } }) => {
+  const { isDarkTheme } = useContext(ThemeContext);
   return (
     <Layout
       isUserInfoPage={true}
@@ -33,7 +36,7 @@ const StudentsTemplate = ({ pageContext: { student, studentData } }) => {
             data={studentData.labs}
             toggleChart={toggleChart}
           />
-          <StyledWrapper>
+          <StyledWrapper isDarkTheme={isDarkTheme}>
             <StudentInfoTable studentData={[student]} />
             <StudentLabInfo labInfo={studentData.labs} />
           </StyledWrapper>

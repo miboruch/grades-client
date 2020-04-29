@@ -7,8 +7,8 @@ const InputWrapper = styled.div`
   width: 300px;
   height: 40px;
   background-color: ${({ theme, isDarkTheme }) =>
-    isDarkTheme ? theme.color.searchBarDark : theme.color.searchBar};
-  border: ${({ isDarkTheme }) => (isDarkTheme ? '1px solid #1d1d1d' : 'none')};
+    isDarkTheme ? 'transparent' : theme.color.searchBar};
+  border: ${({ isDarkTheme }) => (isDarkTheme ? '1px solid #555' : 'none')};
   position: relative;
   display: flex;
   justify-content: center;

@@ -15,6 +15,7 @@ export const TableWrapperStyle = styled.div`
   -moz-box-shadow: 1px 3px 13px 2px rgba(235, 228, 235, 1);
   box-shadow: 1px 3px 13px 2px rgba(235, 228, 235, 1);
   color: #2d2d2d;
+  transition: all 0.4s ease;
 
   ${({ isDarkTheme }) =>
     isDarkTheme &&
@@ -46,6 +47,7 @@ export const StyledTableHeading = styled.th`
   color: ${({ theme }) => theme.color.fontColor};
   border-bottom: 1px solid #f4f4f4;
   border-right: 1px solid #f4f4f4;
+  transition: all 0.4s ease;
 
   ${({ isDarkTheme, theme }) =>
     isDarkTheme &&
@@ -63,10 +65,11 @@ export const StyledTableHeading = styled.th`
 export const StyledTd = styled.td`
   border-bottom: 1px solid #f4f4f4;
   border-right: 1px solid #f4f4f4;
-  
-${({ isDarkTheme, theme }) =>
-  isDarkTheme &&
-  css`
+  transition: all 0.4s ease;
+
+  ${({ isDarkTheme, theme }) =>
+    isDarkTheme &&
+    css`
       border-bottom: 1px solid ${theme.color.darkThemeAccents};
       border-right: 1px solid ${theme.color.darkThemeAccents};
     `}

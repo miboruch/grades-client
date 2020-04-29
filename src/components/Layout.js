@@ -8,6 +8,7 @@ import Hamburger from './atoms/Hamburger/Hamburger';
 import Slider from './molecules/Slider/Slider';
 import Header from './molecules/Header/Header';
 import { ThemeContext } from '../context/ThemeContext';
+import ToggleCheckbox from './atoms/ToggleCheckbox/ToggleCheckbox';
 
 const StyledWrapper = styled.div`
   width: 100%;
@@ -28,7 +29,7 @@ const Layout = ({ render, isUserInfoPage }) => {
   const [isChartOpen, setChartOpen] = useState(false);
   const [indexNumber, setIndexNumber] = useState('');
 
-  const { isDarkTheme } = useContext(ThemeContext);
+  const { isDarkTheme, toggleTheme } = useContext(ThemeContext);
   console.log(isDarkTheme);
 
   const toggleMenu = () => {

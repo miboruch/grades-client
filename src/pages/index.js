@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import { API_URL } from '../utils/helpers';
@@ -8,6 +8,7 @@ import SEO from '../components/seo';
 import Spinner from '../components/atoms/Spinner/Spinner';
 import MobileTable from '../components/molecules/MobileTable/MobileTable';
 import StandardTable from '../components/molecules/StandardTable/StandardTable';
+import { ThemeContext } from '../context/ThemeContext';
 
 const StyledWrapper = styled.div`
   width: 100%;
@@ -16,8 +17,8 @@ const StyledWrapper = styled.div`
   flex-direction: column;
   padding-bottom: 3rem;
   align-items: center;
-  //background-color: #1b2026;
-  background-color: #fbfbfb;
+  background-color: ${({ isDarkTheme, theme }) =>
+    isDarkTheme ? theme.color.backgroundDark : '#fbfbfb'};
 
   ${({ theme }) => theme.mq.standard} {
     height: calc(100% - 60px);
@@ -25,6 +26,7 @@ const StyledWrapper = styled.div`
 `;
 
 const IndexPage = () => {
+  const { isDarkTheme } = useContext(ThemeContext);
   const [students, setStudents] = useState(null);
 
   const fetchData = async () => {
@@ -46,7 +48,7 @@ const IndexPage = () => {
       render={(indexNumber) => (
         <>
           <SEO title='Main page' />
-          <StyledWrapper>
+          <StyledWrapper isDarkTheme={isDarkTheme}>
             {students ? (
               <>
                 <MobileTable

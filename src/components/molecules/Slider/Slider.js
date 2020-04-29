@@ -1,5 +1,5 @@
-import React, { useRef } from 'react';
-import styled from 'styled-components';
+import React, { useContext, useRef } from 'react';
+import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
 import UserIcon from '../../../assets/icons/user.svg';
@@ -7,6 +7,7 @@ import Button from '../../atoms/Button/Button';
 import ClipboardIcon from '../../../assets/icons/clipboard.svg';
 import SlideShowIcon from '../../../assets/icons/slideshow.svg';
 import PageTransitionProvider from '../../../providers/PageTransitionProvider';
+import { ThemeContext } from '../../../context/ThemeContext';
 
 const StyledWrapper = styled.div`
   width: 100%;
@@ -14,17 +15,26 @@ const StyledWrapper = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  background-color: ${({ theme }) => theme.color.main};
+  background: ${({ isDarkTheme, theme }) =>
+    isDarkTheme ? theme.color.mainDarkGradient : theme.color.mainGradient};
   color: #fff;
   padding: 7rem 1rem 1rem 1rem;
   transform: ${({ isOpen }) =>
     isOpen ? 'translateX(0)' : 'translateX(-100%)'};
-  transition: all 0.5s ease;
+  transition: all 0.4s ease;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
   z-index: 900;
+
+  ${({ isDarkTheme }) =>
+    isDarkTheme &&
+    css`
+      -webkit-box-shadow: 4px 3px 13px 2px rgba(29, 29, 29, 1);
+      -moz-box-shadow: 4px 3px 13px 2px rgba(29, 29, 29, 1);
+      box-shadow: 4px 3px 13px 2px rgba(29, 29, 29, 1);
+    `}
 
   ${({ theme }) => theme.mq.tablet} {
     width: 70%;
@@ -54,7 +64,9 @@ const IconWrapper = styled.div`
   height: 90px;
   background-color: #fff;
   border-radius: 50%;
-  border: 2px solid ${({ theme }) => theme.color.fontColor};
+  border: 2px solid
+    ${({ theme, isDarkTheme }) =>
+      isDarkTheme ? '#ccc' : theme.color.fontColor};
   position: relative;
   margin-top: 2rem;
 `;
@@ -115,23 +127,20 @@ const StyledLink = styled.a`
   color: inherit;
 `;
 
-const StyledGatsbyLink = styled(Link)`
-  color: #fff;
-`;
-
-const Slider = ({ isOpen, isDarkTheme }) => {
+const Slider = ({ isOpen }) => {
+  const { isDarkTheme } = useContext(ThemeContext);
   return (
     <StyledWrapper isOpen={isOpen} isDarkTheme={isDarkTheme}>
       <PageTransitionProvider to={'/'} index={''}>
         <StyledHeading>Testowanie i jakość oprogramowania</StyledHeading>
       </PageTransitionProvider>
-      <IconWrapper>
+      <IconWrapper isDarkTheme={isDarkTheme}>
         <StyledUserIcon />
       </IconWrapper>
       <StyledNameHeading>Tomasz Gądek</StyledNameHeading>
       <StyledDescriptionParagraph>Java specialist</StyledDescriptionParagraph>
       <PageTransitionProvider to={'/'} index={''}>
-        <Button isActive={true}>
+        <Button isActive={true} isDarkTheme={isDarkTheme}>
           <StyledClipboardIcon />
           Lista studentów
         </Button>

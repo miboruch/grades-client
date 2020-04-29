@@ -60,8 +60,8 @@ const Chart = ({ isOpen, data, toggleChart }) => {
         <AreaChart data={updatedData}>
           <defs>
             <linearGradient id='chartColor' x1='0' y1='0' x2='0' y2='1'>
-              <stop offset='5%' stopColor='#009a93' stopOpacity={0.8} />
-              <stop offset='95%' stopColor='#009a93' stopOpacity={0} />
+              <stop offset='5%' stopColor='#eee' stopOpacity={0.8} />
+              <stop offset='95%' stopColor='#eee' stopOpacity={0} />
             </linearGradient>
           </defs>
           <XAxis dataKey='labNumber' />

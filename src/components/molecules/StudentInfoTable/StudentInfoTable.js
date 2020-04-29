@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Table from '../Table/Table';
 import * as TableStyles from '../../../styles/tableStyles';
+import { ThemeContext } from '../../../context/ThemeContext';
 
 const StyledWrapper = styled(TableStyles.TableWrapperStyle)`
   width: 95%;
 `;
 
 const StudentInfoTable = ({ studentData }) => {
+  const { isDarkTheme } = useContext(ThemeContext);
   const columns = React.useMemo(
     () => [
       {
@@ -36,7 +38,7 @@ const StudentInfoTable = ({ studentData }) => {
   );
 
   return (
-    <StyledWrapper>
+    <StyledWrapper isDarkTheme={isDarkTheme}>
       <Table data={studentData} columns={columns} isStudentInfoPage={true} />
     </StyledWrapper>
   );

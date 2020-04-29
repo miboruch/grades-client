@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
 import * as TableStyles from '../../../styles/tableStyles';
@@ -6,6 +6,7 @@ import Table from '../Table/Table';
 import PropTypes from 'prop-types';
 import StandardTable from '../StandardTable/StandardTable';
 import PageTransitionProvider from '../../../providers/PageTransitionProvider';
+import { ThemeContext } from '../../../context/ThemeContext';
 
 const StyledWrapper = styled(TableStyles.TableWrapperStyle)`
   width: 100%;
@@ -20,6 +21,7 @@ const StyledWrapper = styled(TableStyles.TableWrapperStyle)`
 `;
 
 const MobileTable = ({ data }) => {
+  const {isDarkTheme} = useContext(ThemeContext);
   const columns = React.useMemo(
     () => [
       {
@@ -68,8 +70,8 @@ const MobileTable = ({ data }) => {
   );
 
   return (
-    <StyledWrapper>
-      <Table data={data} columns={columns} />
+    <StyledWrapper isDarkTheme={isDarkTheme}>
+      <Table data={data} columns={columns}/>
     </StyledWrapper>
   );
 };

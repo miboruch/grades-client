@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import * as TableStyles from '../../../styles/tableStyles';
 import PropTypes from 'prop-types';
 import { useTable } from 'react-table';
+import { ThemeContext } from '../../../context/ThemeContext';
 
 const Table = ({ data, columns, isStudentInfoPage }) => {
+  const { isDarkTheme } = useContext(ThemeContext);
   const {
     getTableProps,
     getTableBodyProps,
@@ -16,12 +18,18 @@ const Table = ({ data, columns, isStudentInfoPage }) => {
     data
   });
   return (
-    <TableStyles.StyledTable isStudentInfoPage={isStudentInfoPage} {...getTableProps()}>
+    <TableStyles.StyledTable
+      isStudentInfoPage={isStudentInfoPage}
+      {...getTableProps()}
+    >
       <thead>
         {headerGroups.map((headerGroup) => (
           <TableStyles.StyledTableRow {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map((column) => (
-              <TableStyles.StyledTableHeading {...column.getHeaderProps()}>
+              <TableStyles.StyledTableHeading
+                {...column.getHeaderProps()}
+                isDarkTheme={isDarkTheme}
+              >
                 {column.render('Header')}
               </TableStyles.StyledTableHeading>
             ))}
@@ -33,10 +41,16 @@ const Table = ({ data, columns, isStudentInfoPage }) => {
           prepareRow(row);
           return (
             <>
-              <TableStyles.StyledTableRow {...row.getRowProps()}>
+              <TableStyles.StyledTableRow
+                {...row.getRowProps()}
+                isDarkTheme={isDarkTheme}
+              >
                 {row.cells.map((cell) => {
                   return (
-                    <TableStyles.StyledTd {...cell.getCellProps()}>
+                    <TableStyles.StyledTd
+                      {...cell.getCellProps()}
+                      isDarkTheme={isDarkTheme}
+                    >
                       {cell.render('Cell')}
                     </TableStyles.StyledTd>
                   );
@@ -58,6 +72,6 @@ Table.propTypes = {
 
 Table.defaultProps = {
   isStudentInfoPage: false
-}
+};
 
 export default Table;

@@ -1,23 +1,29 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import UserIcon from '../assets/icons/user.svg';
 import ArrowIcon from '../assets/icons/arrow_half.svg';
 import PresenceIcon from '../assets/icons/checked.svg';
 import AbsenceIcon from '../assets/icons/ban.svg';
 
 export const TableWrapperStyle = styled.div`
-  //background-color: #272a34;
-  background-color: #fff;
+  background-color: ${({ isDarkTheme, theme }) =>
+    isDarkTheme ? theme.color.tableBackgroundDark : '#fff'};
   padding: 1rem;
   margin-top: 2rem;
   overflow-y: scroll;
   border-radius: 15px;
-  //-webkit-box-shadow: 1px 3px 13px 2px rgba(0, 0, 0, 1);
-  //-moz-box-shadow: 1px 3px 13px 2px rgba(0, 0, 0, 1);
-  //box-shadow: 1px 3px 13px 2px rgba(0, 0, 0, 1);
-  //color: #fff;
   -webkit-box-shadow: 1px 3px 13px 2px rgba(235, 228, 235, 1);
   -moz-box-shadow: 1px 3px 13px 2px rgba(235, 228, 235, 1);
   box-shadow: 1px 3px 13px 2px rgba(235, 228, 235, 1);
+  color: #2d2d2d;
+
+  ${({ isDarkTheme }) =>
+    isDarkTheme &&
+    css`
+      -webkit-box-shadow: 1px 3px 13px 2px rgba(29, 29, 29, 1);
+      -moz-box-shadow: 1px 3px 13px 2px rgba(29, 29, 29, 1);
+      box-shadow: 1px 3px 13px 2px rgba(29, 29, 29, 1);
+      color: #f1f1f1;
+    `}
 `;
 
 export const StyledTable = styled.table`
@@ -38,10 +44,16 @@ export const StyledTableHeading = styled.th`
   font-size: 12px;
   font-weight: 400;
   color: ${({ theme }) => theme.color.fontColor};
-  //border-bottom: 1px solid #000;
-  //border-right: 1px solid #000;
   border-bottom: 1px solid #f4f4f4;
   border-right: 1px solid #f4f4f4;
+
+  ${({ isDarkTheme, theme }) =>
+    isDarkTheme &&
+    css`
+      border-bottom: 1px solid ${theme.color.darkThemeAccents};
+      border-right: 1px solid ${theme.color.darkThemeAccents};
+      color: #f5f5f5;
+    `}
 
   &:last-child {
     border-right: 0;
@@ -51,8 +63,13 @@ export const StyledTableHeading = styled.th`
 export const StyledTd = styled.td`
   border-bottom: 1px solid #f4f4f4;
   border-right: 1px solid #f4f4f4;
-  //border-bottom: 1px solid #000;
-  //border-right: 1px solid #000;
+  
+${({ isDarkTheme, theme }) =>
+  isDarkTheme &&
+  css`
+      border-bottom: 1px solid ${theme.color.darkThemeAccents};
+      border-right: 1px solid ${theme.color.darkThemeAccents};
+    `}
 
   &:last-child {
     border-right: 0;
@@ -73,7 +90,8 @@ export const StyledTableRow = styled.tr`
   }
 
   &:hover {
-    background-color: ${({ theme }) => theme.color.searchBar};
+    background-color: ${({ isDarkTheme, theme }) =>
+      isDarkTheme ? theme.color.darkThemeAccents : theme.color.searchBar};
   }
 `;
 
@@ -125,7 +143,7 @@ export const StyledAbsenceIcon = styled(AbsenceIcon)`
 `;
 
 export const BoldGreenFont = styled.p`
-  color: ${({theme}) => theme.color.main};
+  color: ${({ theme }) => theme.color.main};
   font-weight: 600;
 `;
 

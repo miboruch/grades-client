@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import PropTypes from 'prop-types';
 import './index.css';
@@ -7,6 +7,7 @@ import { theme } from '../styles/theme';
 import Hamburger from './atoms/Hamburger/Hamburger';
 import Slider from './molecules/Slider/Slider';
 import Header from './molecules/Header/Header';
+import { ThemeContext } from '../context/ThemeContext';
 
 const StyledWrapper = styled.div`
   width: 100%;
@@ -22,10 +23,13 @@ const ContentWrapper = styled.div`
   position: relative;
 `;
 
-const Layout = ({ render, isUserInfoPage, isDarkTheme }) => {
+const Layout = ({ render, isUserInfoPage }) => {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [isChartOpen, setChartOpen] = useState(false);
   const [indexNumber, setIndexNumber] = useState('');
+
+  const { isDarkTheme } = useContext(ThemeContext);
+  console.log(isDarkTheme);
 
   const toggleMenu = () => {
     setMenuOpen(!isMenuOpen);
@@ -45,7 +49,7 @@ const Layout = ({ render, isUserInfoPage, isDarkTheme }) => {
       <ThemeProvider theme={theme}>
         <StyledWrapper>
           <Hamburger isOpen={isMenuOpen} toggle={toggleMenu} />
-          <Slider isOpen={isMenuOpen} isDarkTheme={isDarkTheme}/>
+          <Slider isOpen={isMenuOpen} isDarkTheme={isDarkTheme} />
           <ContentWrapper>
             <Header
               handleChange={handleChange}

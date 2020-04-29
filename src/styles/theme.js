@@ -1,6 +1,14 @@
 export const theme = {
   color: {
-    main: '#009a93',
+    mainDark: '#2C2E2E',
+    // mainDark: '#088F12',
+    main: '#22716b',
+    mainGradient: 'linear-gradient(25deg, #184d5b, #22716b, #28977a, #29bf89)',
+    mainDarkGradient: 'linear-gradient(25deg, #000, #0f0f0f, #141414, #2b2727)',
+    backgroundDark: '#2D3132',
+    tableBackgroundDark: '#141414',
+    searchBarDark: '#141414',
+    darkThemeAccents: '#1d1d1d',
     fontColor: '#878787',
     secondFontColor: '#bebebe',
     searchBar: '#f4f4f4',

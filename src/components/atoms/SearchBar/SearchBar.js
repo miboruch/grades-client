@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import SearchIcon from '../../../assets/icons/loupe.svg';
+import { ThemeContext } from '../../../context/ThemeContext';
 
 const InputWrapper = styled.div`
   width: 300px;
   height: 40px;
-  background-color: ${({ theme }) => theme.color.searchBar};
+  background-color: ${({ theme, isDarkTheme }) =>
+    isDarkTheme ? theme.color.searchBarDark : theme.color.searchBar};
+  border: ${({ isDarkTheme }) => (isDarkTheme ? '1px solid #1d1d1d' : 'none')};
   position: relative;
   display: flex;
   justify-content: center;
@@ -13,6 +16,7 @@ const InputWrapper = styled.div`
   margin-top: 1rem;
   flex-direction: row;
   border-radius: 20px;
+  transition: all 0.4s ease;
 
   ${({ theme }) => theme.mq.tablet} {
     width: 550px;
@@ -55,8 +59,9 @@ const StyledSearchIcon = styled(SearchIcon)`
 `;
 
 const SearchBar = ({ handleChange }) => {
+  const { isDarkTheme } = useContext(ThemeContext);
   return (
-    <InputWrapper>
+    <InputWrapper isDarkTheme={isDarkTheme}>
       <StyledInput
         placeholder={'Szukaj studenta'}
         onChange={(e) => handleChange(e)}

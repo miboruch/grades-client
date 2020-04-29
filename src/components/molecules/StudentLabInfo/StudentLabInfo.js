@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Table from '../Table/Table';
 import * as TableStyles from '../../../styles/tableStyles';
+import { ThemeContext } from '../../../context/ThemeContext';
 
 const StyledWrapper = styled(TableStyles.TableWrapperStyle)`
   width: 95%;
-  height: 64%;
+  height: 67%;
+
+  ${({ theme }) => theme.mq.standard} {
+    height: 70%;
+  }
 `;
 
 const StudentLabInfo = ({ labInfo }) => {
+  const { isDarkTheme } = useContext(ThemeContext);
   const columns = React.useMemo(
     () => [
       {
@@ -54,7 +60,7 @@ const StudentLabInfo = ({ labInfo }) => {
   );
 
   return (
-    <StyledWrapper>
+    <StyledWrapper isDarkTheme={isDarkTheme}>
       <Table data={labInfo} columns={columns} />
     </StyledWrapper>
   );

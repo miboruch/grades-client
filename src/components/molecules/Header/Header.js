@@ -88,7 +88,7 @@ const StyledChatIcon = styled(ChartIcon)`
   width: 20px;
   height: 20px;
   fill: ${({ theme, isDarkTheme }) =>
-    isDarkTheme ? theme.color.mainDark : theme.color.main};
+    isDarkTheme ? '#fff' : theme.color.main};
   position: absolute;
   top: 50%;
   left: 3rem;

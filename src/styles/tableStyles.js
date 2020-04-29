@@ -151,7 +151,7 @@ export const BoldGreenFont = styled.p`
 `;
 
 export const BoldRedFont = styled(BoldGreenFont)`
-  color: red;
+  color: #de2620;
 `;
 
 export const StyledPositionWrapper = styled.div`

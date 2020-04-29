@@ -10,7 +10,8 @@ const StyledButton = styled.button`
   background-color: transparent;
   position: relative;
   font-family: 'Gilroy';
-  color: ${({ theme }) => theme.color.main};
+  color: ${({ theme, isDarkTheme }) =>
+    isDarkTheme ? '#fff' : theme.color.main};
   overflow: hidden;
   font-weight: 500;
   letter-spacing: 1px;
@@ -29,7 +30,8 @@ const StyledButton = styled.button`
   transition: all 0.4s ease;
 
   &:hover {
-    color: ${({ theme }) => theme.color.main};
+    color: ${({ theme, isDarkTheme }) =>
+      isDarkTheme ? '#fff' : theme.color.main};
     transition: color 0.14s ease;
   }
 
@@ -40,7 +42,7 @@ const StyledButton = styled.button`
     left: 0;
     width: 100%;
     height: 0;
-    background: ${({ isDarkTheme }) => (isDarkTheme ? '#000' : '#fff')};
+    background: ${({ isDarkTheme }) => (isDarkTheme ? '#1c1414' : '#fff')};
     transition: all 0.25s ease;
     z-index: -1;
   }
@@ -49,21 +51,6 @@ const StyledButton = styled.button`
     height: 100%;
     transition: all 0.25s ease;
   }
-
-  ${({ isDarkTheme }) =>
-    isDarkTheme &&
-    css`
-      background-color: ${({ isActive, theme }) =>
-        isActive ? '#fff' : 'transparent'};
-      color: ${({ isActive, theme }) =>
-        isActive ? theme.color.mainDark : '#fff'};
-
-      &:hover {
-        -webkit-box-shadow: 4px 4px 14px 2px rgba(19, 21, 41, 1);
-        -moz-box-shadow: 4px 4px 14px 2px rgba(19, 21, 41, 1);
-        box-shadow: 4px 4px 14px 2px rgba(19, 21, 41, 1);
-      }
-    `}
 
   ${({ isMenuButton }) =>
     isMenuButton &&
@@ -78,16 +65,26 @@ const StyledButton = styled.button`
       box-shadow: none;
     `}
 
+  ${({ isDarkTheme, isMenuButton }) =>
+    isDarkTheme &&
+    !isMenuButton &&
+    css`
+      background-color: ${({ theme }) => theme.color.backgroundDark};
+      border: none;
+      -webkit-box-shadow: 2px 2px 6px 0px rgba(25, 21, 22, 1);
+      -moz-box-shadow: 2px 2px 6px 0px rgba(25, 21, 22, 1);
+      box-shadow: 2px 2px 6px 0px rgba(25, 21, 22, 1);
+    `}
+
   &:focus {
     outline: none;
   }
 `;
 
-const Button = ({ children, isActive, onClick, isMenu }) => {
+const Button = ({ children, onClick, isMenu }) => {
   const { isDarkTheme } = useContext(ThemeContext);
   return (
     <StyledButton
-      isActive={isActive}
       onClick={onClick}
       isDarkTheme={isDarkTheme}
       isMenuButton={isMenu}

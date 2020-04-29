@@ -29,7 +29,7 @@ const ChartWrapper = styled.section`
   justify-content: flex-start;
   align-items: center;
   display: flex;
-  //color: ${({ isDarkTheme }) => (isDarkTheme ? '#f5f5f5' : '#2d2d2d')};
+  color: ${({ isDarkTheme }) => (isDarkTheme ? '#f5f5f5' : '#2d2d2d')};
 
   ${({ theme }) => theme.mq.standard} {
     justify-content: center;
@@ -64,16 +64,8 @@ const Chart = ({ isOpen, data, toggleChart }) => {
         <AreaChart data={updatedData}>
           <defs>
             <linearGradient id='chartColor' x1='0' y1='0' x2='0' y2='1'>
-              <stop
-                offset='5%'
-                stopColor={isDarkTheme ? '#27293d' : '#07886F'}
-                stopOpacity={0.8}
-              />
-              <stop
-                offset='95%'
-                stopColor={isDarkTheme ? '#27293d' : '#07886F'}
-                stopOpacity={0}
-              />
+              <stop offset='5%' stopColor={'#07886F'} stopOpacity={0.8} />
+              <stop offset='95%' stopColor={'#07886F'} stopOpacity={0} />
             </linearGradient>
           </defs>
           <XAxis dataKey='labNumber' />

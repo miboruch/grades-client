@@ -24,7 +24,7 @@ const Table = ({ data, columns, isStudentInfoPage }) => {
     >
       <thead>
         {headerGroups.map((headerGroup) => (
-          <TableStyles.StyledTableRow {...headerGroup.getHeaderGroupProps()}>
+          <TableStyles.StyledTableRow {...headerGroup.getHeaderGroupProps()} isDarkTheme={isDarkTheme}>
             {headerGroup.headers.map((column) => (
               <TableStyles.StyledTableHeading
                 {...column.getHeaderProps()}

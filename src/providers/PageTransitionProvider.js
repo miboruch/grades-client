@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import TransitionLink from 'gatsby-plugin-transition-link';
 import PropTypes from 'prop-types';
 import gsap from 'gsap';
+import { ThemeContext } from '../context/ThemeContext';
 
-const createBox = (index) => {
+const createBox = (index, isDarkTheme) => {
   const body = document.body;
   const box = document.createElement('div');
   const heading = document.createElement('h1');
@@ -16,21 +17,19 @@ const createBox = (index) => {
   box.style.display = 'flex';
   box.style.justifyContent = 'center';
   box.style.alignItems = 'center';
-  box.style.backgroundColor = 'white';
+  box.style.backgroundColor = isDarkTheme ? '#2D1F20' : 'white';
   box.style.width = `${vw}px`;
   box.style.height = `${vh}px`;
 
   const headingWrapper = document.createElement('div');
   headingWrapper.style.overflow = 'hidden';
 
-  const textNode = document.createTextNode(
-    index ? index : 'TiJO'
-  );
+  const textNode = document.createTextNode(index ? index : 'TiJO');
 
   heading.appendChild(textNode);
   heading.style.fontSize = '80px';
   heading.style.fontFamily = 'Gilroy';
-  heading.style.color = '#009a93';
+  heading.style.color = isDarkTheme ? '#ccc' : '#009a93';
   heading.style.fontWeight = '600';
   heading.style.letterSpacing = '4px';
 
@@ -41,8 +40,9 @@ const createBox = (index) => {
 };
 
 const PageTransitionProvider = ({ children, to, index }) => {
+  const { isDarkTheme } = useContext(ThemeContext);
   const exitAnimation = () => {
-    const { box, heading, body, vw } = createBox(index);
+    const { box, heading, body, vw } = createBox(index, isDarkTheme);
     const tl = gsap.timeline({ defaults: { ease: 'Power3.easeOut' } });
     gsap.set(heading, { autoAlpha: 0 });
 
@@ -60,7 +60,7 @@ const PageTransitionProvider = ({ children, to, index }) => {
   };
 
   const enterAnimation = () => {
-    const { box, body, vw } = createBox(index);
+    const { box, body, vw } = createBox(index, isDarkTheme);
     const tl = gsap.timeline({ defaults: { ease: 'Power3.easeIn' } });
 
     tl.to(box, {

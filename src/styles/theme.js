@@ -1,14 +1,9 @@
 export const theme = {
   color: {
     mainDark: '#2C2E2E',
-    // mainDark: '#088F12',
     main: '#07886F',
-    // main: '#22716b',
     mainGradient: 'linear-gradient(25deg, #184d5b, #22716b, #28977a, #29bf89)',
-    // mainDarkGradient: 'linear-gradient(25deg, #000, #0f0f0f, #141414, #2b2727)',
     mainDarkGradient: 'linear-gradient(25deg, #121621, #121621, #27293d, #27293d)',
-    // backgroundDark: '#141414',
-    // tableBackgroundDark: '#2D3132',
     backgroundDark: '#1d1d2c',
     tableBackgroundDark: '#27293d',
     darkThemeAccents: '#121621',

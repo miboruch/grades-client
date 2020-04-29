@@ -73,10 +73,15 @@ const StyledSmallParagraph = styled(StyledParagraph)`
 `;
 
 const StyledContentWrapper = styled.section`
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   flex-direction: row;
+  margin-right: 8rem;
+
+  ${({ theme }) => theme.mq.desktop} {
+    display: flex;
+  }
 `;
 
 const StyledChatIcon = styled(ChartIcon)`

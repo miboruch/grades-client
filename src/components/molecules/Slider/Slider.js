@@ -6,6 +6,7 @@ import UserIcon from '../../../assets/icons/user.svg';
 import Button from '../../atoms/Button/Button';
 import ClipboardIcon from '../../../assets/icons/clipboard.svg';
 import SlideShowIcon from '../../../assets/icons/slideshow.svg';
+import PageIcon from '../../../assets/icons/page.svg';
 import PageTransitionProvider from '../../../providers/PageTransitionProvider';
 import { ThemeContext } from '../../../context/ThemeContext';
 
@@ -18,7 +19,7 @@ const StyledWrapper = styled.div`
   background: ${({ isDarkTheme, theme }) =>
     isDarkTheme ? theme.color.mainDarkGradient : theme.color.mainGradient};
   color: #fff;
-  padding: 7rem 1rem 1rem 1rem;
+  padding-top: 7rem;
   transform: ${({ isOpen }) =>
     isOpen ? 'translateX(0)' : 'translateX(-100%)'};
   transition: all 0.8s ease;
@@ -27,6 +28,7 @@ const StyledWrapper = styled.div`
   align-items: center;
   flex-direction: column;
   z-index: 900;
+  overflow: hidden;
 
   ${({ isDarkTheme }) =>
     isDarkTheme &&
@@ -44,7 +46,7 @@ const StyledWrapper = styled.div`
     transform: translateX(0);
     position: static;
     width: 400px;
-    padding: 4.3rem 1rem 1rem 1rem;
+    padding-top: 4.3rem;
   }
 `;
 
@@ -105,11 +107,21 @@ const StyledDescriptionParagraph = styled.p`
 const StyledClipboardIcon = styled(ClipboardIcon)`
   width: 20px;
   height: 20px;
-  fill: ${({ theme }) => theme.color.main};
+  fill: #fff;
   position: absolute;
   top: 50%;
   left: 3rem;
   transform: translateY(-50%);
+  transition: all 0.4s ease;
+`;
+
+const ButtonWrapper = styled.div`
+  width: 100%;
+
+  &:hover ${StyledClipboardIcon} {
+    fill: ${({ theme }) => theme.color.main};
+    transition: fill 0.14s ease;
+  }
 `;
 
 const StyledSlideShowIcon = styled(SlideShowIcon)`
@@ -125,6 +137,32 @@ const StyledSlideShowIcon = styled(SlideShowIcon)`
 const StyledLink = styled.a`
   text-transform: none;
   color: inherit;
+  width: 100%;
+
+  &:hover ${StyledSlideShowIcon} {
+    fill: ${({ theme }) => theme.color.main};
+    transition: all 0.14s ease;
+  }
+`;
+
+const StyledPageIcon = styled(PageIcon)`
+  width: 20px;
+  height: 20px;
+  fill: #fff;
+  position: absolute;
+  top: 50%;
+  left: 3rem;
+  transform: translateY(-50%);
+`;
+
+const StyledPageLink = styled.a`
+  color: inherit;
+  width: 100%;
+
+  &:hover ${StyledPageIcon} {
+    fill: ${({ theme }) => theme.color.main};
+    transition: all 0.14s ease;
+  }
 `;
 
 const Slider = ({ isOpen }) => {
@@ -139,12 +177,14 @@ const Slider = ({ isOpen }) => {
       </IconWrapper>
       <StyledNameHeading>Tomasz Gądek</StyledNameHeading>
       <StyledDescriptionParagraph>Java specialist</StyledDescriptionParagraph>
-      <PageTransitionProvider to={'/'} index={''}>
-        <Button isActive={true} isDarkTheme={isDarkTheme}>
-          <StyledClipboardIcon />
-          Lista studentów
-        </Button>
-      </PageTransitionProvider>
+      <ButtonWrapper>
+        <PageTransitionProvider to={'/'} index={''}>
+          <Button isActive={true} isDarkTheme={isDarkTheme} isMenu={true}>
+            <StyledClipboardIcon />
+            Lista studentów
+          </Button>
+        </PageTransitionProvider>
+      </ButtonWrapper>
       <StyledLink
         href={
           'https://drive.google.com/drive/folders/1aMv62b4TQYrD8ydSy2DDYXSPglc0YZKm'
@@ -152,11 +192,21 @@ const Slider = ({ isOpen }) => {
         rel={'noopener noreferrer'}
         target={'_blank'}
       >
-        <Button isActive={false}>
+        <Button isActive={false} isMenu={true}>
           <StyledSlideShowIcon />
           Laboratoria
         </Button>
       </StyledLink>
+      <StyledPageLink
+        href={'http://www.tomaszgadek.com/index.html'}
+        rel={'noopener noreferrer'}
+        target={'_blank'}
+      >
+        <Button isMenu={true}>
+          <StyledPageIcon />
+          Strona internetowa
+        </Button>
+      </StyledPageLink>
     </StyledWrapper>
   );
 };

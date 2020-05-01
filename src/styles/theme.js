@@ -3,16 +3,11 @@ export const theme = {
     mainDark: '#2C2E2E',
     main: '#07886F',
     mainGradient: 'linear-gradient(25deg, #184d5b, #22716b, #28977a, #29bf89)',
-    // mainDarkGradient:
-    //   'linear-gradient(25deg, #0d0d0d, #1d1d1d, #1d1d1d, #3E2D2F)',
     mainDarkGradient:
       'linear-gradient(25deg, #0d0d0d, #1d1d1d, #2f2f2f, #363636)',
     backgroundDark: '#282828',
-    // backgroundDark: '#2D1F20',
     tableBackgroundDark: '#363636',
-    // tableBackgroundDark: '#3E2D2F',
     darkThemeAccents: '#282828',
-    // darkThemeAccents: '#2D1F20',
     fontColor: '#878787',
     secondFontColor: '#bebebe',
     searchBar: '#f4f4f4',

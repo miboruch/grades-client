@@ -36,6 +36,7 @@ const StudentsTemplate = ({ pageContext: { student, studentData } }) => {
             isOpen={isChartOpen}
             data={studentData.labs}
             toggleChart={toggleChart}
+            index={studentData.index}
           />
           <StyledWrapper isDarkTheme={isDarkTheme}>
             <StudentInfoTable studentData={[student]} />

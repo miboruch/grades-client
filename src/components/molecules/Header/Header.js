@@ -52,7 +52,7 @@ const StyledInfoBox = styled.div`
   align-items: flex-end;
   flex-direction: column;
   display: none;
-  color: ${({ theme }) => theme.color.fontColor};
+  color: inherit;
 
   ${({ theme }) => theme.mq.standard} {
     display: flex;
@@ -76,6 +76,8 @@ const StyledContentWrapper = styled.section`
   align-items: center;
   flex-direction: row;
   margin-right: 8rem;
+  color: ${({ isDarkTheme, theme }) =>
+    isDarkTheme ? '#f1f1f1' : theme.color.main};
 
   ${({ theme }) => theme.mq.desktop} {
     display: flex;
@@ -101,7 +103,7 @@ const Header = ({ handleChange, toggleChart, isUserInfoPage, isChartOpen }) => {
       {isUserInfoPage ? (
         <>
           <Wrapper>
-            <Button onClick={() => toggleChart()} isActive={true}>
+            <Button onClick={() => toggleChart()}>
               <StyledChatIcon isDarkTheme={isDarkTheme} />
               {isChartOpen ? 'Zamknij wykres' : 'Otwórz wykres'}
             </Button>
@@ -110,7 +112,7 @@ const Header = ({ handleChange, toggleChart, isUserInfoPage, isChartOpen }) => {
       ) : (
         <SearchBar handleChange={handleChange} />
       )}
-      <StyledContentWrapper>
+      <StyledContentWrapper isDarkTheme={isDarkTheme}>
         <StyledInfoBox>
           <StyledParagraph>
             Państwowa Wyższa Szkoła Zawodowa w Tarnowie

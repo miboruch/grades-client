@@ -13,12 +13,13 @@ import {
 } from 'recharts';
 import { useOutsideClick } from '../../../utils/customHooks';
 import { ThemeContext } from '../../../context/ThemeContext';
+import SelectMenu from '../../atoms/SelectMenu/SelectMenu';
 
 const ChartWrapper = styled.section`
   width: 100%;
   height: 100%;
   background: ${({ isDarkTheme, theme }) =>
-    isDarkTheme ? theme.color.mainDarkGradient : 'rgba(255, 255, 255, 0.9)'};
+    isDarkTheme ? theme.color.mainDarkGradient : '#fff'};
   opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
   visibility: ${({ isOpen }) => (isOpen ? 'visible' : 'hidden')};
   position: absolute;
@@ -36,6 +37,12 @@ const ChartWrapper = styled.section`
   }
 `;
 
+const SelectWrapper = styled.div`
+  position: absolute;
+  top: 3.5rem;
+  right: 3rem;
+`;
+
 const StyledResponsiveContainer = styled(ResponsiveContainer)`
   display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
   padding-left: 1rem;
@@ -45,26 +52,21 @@ const StyledResponsiveContainer = styled(ResponsiveContainer)`
   }
 `;
 
-const Cursor = styled.div`
-  width: 150px;
-  height: 60px;
-  background-color: red;
-  color: #fff;
-`;
-
-const Chart = ({ isOpen, data, toggleChart }) => {
+const Chart = ({ isOpen, data, toggleChart, index }) => {
   const { isDarkTheme } = useContext(ThemeContext);
   const chartRef = useRef(null);
 
-  const updatedData = data.map((item, index) => ({
+  const updatedData = data.map((item, iterator) => ({
     ...item,
-    labNumber: `Lab #${data.length - index}`
+    index: index,
+    labNumber: `Lab #${data.length - iterator}`
   }));
-
-  useOutsideClick(chartRef, isOpen, toggleChart);
-
+  
   return (
     <ChartWrapper isOpen={isOpen} isDarkTheme={isDarkTheme}>
+      <SelectWrapper>
+        <SelectMenu currentIndex={index} />
+      </SelectWrapper>
       <StyledResponsiveContainer
         width='80%'
         height={300}
@@ -74,8 +76,12 @@ const Chart = ({ isOpen, data, toggleChart }) => {
         <AreaChart data={updatedData}>
           <defs>
             <linearGradient id='chartColor' x1='0' y1='0' x2='0' y2='1'>
-              <stop offset='5%' stopColor={'#07886F'} stopOpacity={0.8} />
-              <stop offset='95%' stopColor={'#07886F'} stopOpacity={0} />
+              <stop offset='5%' stopColor={'#29bf89'} stopOpacity={0.8} />
+              <stop offset='95%' stopColor={'#184d5b'} stopOpacity={0} />
+            </linearGradient>
+            <linearGradient id='secondStudentColor' x1='0' y1='0' x2='0' y2='1'>
+              <stop offset='5%' stopColor={'#4d4d4d'} stopOpacity={0.8} />
+              <stop offset='95%' stopColor={'#4d4d4d'} stopOpacity={0} />
             </linearGradient>
           </defs>
           <XAxis dataKey='labNumber' stroke={isDarkTheme ? '#fff' : '#aaa'} />
@@ -90,7 +96,7 @@ const Chart = ({ isOpen, data, toggleChart }) => {
             }}
             viewBox={{ x: 0, y: 0, width: 250, height: 60 }}
           />
-          <Legend />
+          <Legend formatter={(value) => `${index} ${value}`} />
           <Area
             type='monotone'
             dataKey='points'
@@ -99,6 +105,14 @@ const Chart = ({ isOpen, data, toggleChart }) => {
             fillOpacity={1}
             fill={'url(#chartColor)'}
           />
+          {/*<Area*/}
+          {/*  type='monotone'*/}
+          {/*  dataKey='points'*/}
+          {/*  stroke={isDarkTheme ? '#f5f5f5' : '#009a93'}*/}
+          {/*  activeDot={{ r: 6 }}*/}
+          {/*  fillOpacity={1}*/}
+          {/*  fill={'url(#secondStudentColor)'}*/}
+          {/*/>*/}
         </AreaChart>
       </StyledResponsiveContainer>
     </ChartWrapper>
@@ -108,7 +122,8 @@ const Chart = ({ isOpen, data, toggleChart }) => {
 Chart.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   data: PropTypes.array.isRequired,
-  toggleChart: PropTypes.func.isRequired
+  toggleChart: PropTypes.func.isRequired,
+  index: PropTypes.string.isRequired
 };
 
 export default Chart;

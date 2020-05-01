@@ -39,7 +39,7 @@ const Table = ({ data, columns, isStudentInfoPage }) => {
         ))}
       </thead>
       <tbody {...getTableBodyProps()}>
-        {rows.map((row, i) => {
+        {rows.map((row, index) => {
           prepareRow(row);
           return (
             <>

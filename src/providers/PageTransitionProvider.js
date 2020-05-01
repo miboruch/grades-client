@@ -13,6 +13,7 @@ const createBox = (index, isDarkTheme) => {
 
   box.style.zIndex = 1000;
   box.style.bottom = 0;
+  box.style.left = 0;
   box.style.position = 'fixed';
   box.style.display = 'flex';
   box.style.justifyContent = 'center';

@@ -1,8 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { API_URL } from '../utils/helpers';
-
+import { graphql } from 'gatsby';
 import Layout from '../components/Layout';
 import SEO from '../components/seo';
 import Spinner from '../components/atoms/Spinner/Spinner';
@@ -26,23 +24,12 @@ const StyledWrapper = styled.div`
   }
 `;
 
-const IndexPage = () => {
+const IndexPage = ({
+  data: {
+    students: { data }
+  }
+}) => {
   const { isDarkTheme } = useContext(ThemeContext);
-  const [students, setStudents] = useState(null);
-
-  const fetchData = async () => {
-    const { data } = await axios.get(API_URL);
-    const students = data.map((student, index) => {
-      return { ...student, position: ++index };
-    });
-    setStudents(students);
-  };
-
-  useEffect(() => {
-    (async () => {
-      await fetchData();
-    })();
-  }, []);
 
   return (
     <Layout
@@ -50,15 +37,15 @@ const IndexPage = () => {
         <>
           <SEO title='Main page' />
           <StyledWrapper isDarkTheme={isDarkTheme}>
-            {students ? (
+            {data ? (
               <>
                 <MobileTable
-                  data={students.filter((student) =>
+                  data={data.filter((student) =>
                     student.index.includes(indexNumber)
                   )}
                 />
                 <StandardTable
-                  data={students.filter((student) =>
+                  data={data.filter((student) =>
                     student.index.includes(indexNumber)
                   )}
                 />
@@ -72,5 +59,23 @@ const IndexPage = () => {
     />
   );
 };
+
+export const query = graphql`
+  query {
+    students {
+      data {
+        index
+        mark
+        group
+        lecturePoints
+        homeworkPoints
+        presenceCounter
+        absenceCounter
+        allPoints
+        position
+      }
+    }
+  }
+`;
 
 export default IndexPage;

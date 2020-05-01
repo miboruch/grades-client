@@ -21,7 +21,7 @@ const StyledWrapper = styled.div`
   padding-top: 7rem;
   transform: ${({ isOpen }) =>
     isOpen ? 'translateX(0)' : 'translateX(-100%)'};
-  transition: background 0.8s ease;
+  transition: all 0.8s ease;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -32,9 +32,13 @@ const StyledWrapper = styled.div`
   ${({ isDarkTheme }) =>
     isDarkTheme &&
     css`
-      -webkit-box-shadow: 4px 3px 13px 2px rgba(10, 10, 10, 1);
-      -moz-box-shadow: 4px 3px 13px 2px rgba(10, 10, 10, 1);
-      box-shadow: 4px 3px 13px 2px rgba(10, 10, 10, 1);
+      box-shadow: none;
+
+      ${({ theme }) => theme.mq.standard} {
+        -webkit-box-shadow: 4px 3px 13px 2px rgba(10, 10, 10, 1);
+        -moz-box-shadow: 4px 3px 13px 2px rgba(10, 10, 10, 1);
+        box-shadow: 4px 3px 13px 2px rgba(10, 10, 10, 1);
+      }
     `}
 
   ${({ theme }) => theme.mq.tablet} {

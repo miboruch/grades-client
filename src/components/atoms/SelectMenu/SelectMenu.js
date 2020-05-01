@@ -30,11 +30,8 @@ const StyledButton = styled(Button)`
 const MenuList = styled.ul`
   width: 100%;
   height: 500px;
-  color: ${({ isDarkTheme, theme }) =>
-    isDarkTheme ? '#fff' : theme.color.main};
-  border: 1px solid
-    ${({ isDarkTheme, theme }) =>
-      isDarkTheme ? theme.color.darkThemeAccents : '#ccc'};
+  color: ${({ theme }) => theme.color.main};
+  border: 1px solid #ccc;
   transition: all 0.4s ease;
   overflow-y: scroll;
   position: absolute;
@@ -46,6 +43,13 @@ const MenuList = styled.ul`
   flex-direction: column;
   padding: 0;
   z-index: 9;
+
+  ${({ isDarkTheme, theme }) =>
+    isDarkTheme &&
+    css`
+      color: #fff;
+      border: 1px solid ${theme.color.darkThemeAccents};
+    `}
 `;
 
 const SingleMenuItem = styled.li`
@@ -104,6 +108,7 @@ const SelectMenu = ({ currentIndex, setCompareIndex }) => {
       }
     }
   `);
+  /* Display all students except current */
   const result = data.filter((item) => item.index !== currentIndex);
 
   const { isDarkTheme } = useContext(ThemeContext);

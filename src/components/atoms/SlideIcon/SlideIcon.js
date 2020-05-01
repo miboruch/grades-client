@@ -10,9 +10,11 @@ const StyledButton = styled.button`
   border: none;
   position: relative;
   cursor: pointer;
+
   &:focus {
     outline: none;
   }
+
   &::before,
   &::after {
     content: '';
@@ -24,12 +26,14 @@ const StyledButton = styled.button`
     top: ${({ isOpen }) => (isOpen ? '25%' : '50%')};
     transition: all 0.5s ease;
   }
+
   &::before {
     left: -6px;
     transform-origin: bottom right;
     transform: translate(-50%, -50%)
       ${({ isOpen }) => (isOpen ? 'rotate(-43deg)' : 'rotate(43deg)')};
   }
+
   &::after {
     left: 6px;
     transform-origin: bottom left;

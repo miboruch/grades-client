@@ -14,10 +14,10 @@ const StyledWrapper = styled.div`
   flex-direction: column;
   padding-bottom: 3rem;
   align-items: center;
-  background-color: ${({ isDarkTheme, theme }) =>
-    isDarkTheme ? theme.color.backgroundDark : '#fbfbfb'};
+  background: ${({ isDarkTheme, theme }) =>
+    isDarkTheme ? theme.color.mainDarkGradient : '#fbfbfb'};
   position: relative;
-  transition: background-color 0.4s ease;
+  transition: all 0.4s ease;
 
   ${({ theme }) => theme.mq.standard} {
     height: calc(100% - 60px);
@@ -29,13 +29,12 @@ const StudentsTemplate = ({ pageContext: { student, studentData } }) => {
   return (
     <Layout
       isUserInfoPage={true}
-      render={(indexNumber, isChartOpen, toggleChart) => (
+      render={(indexNumber, isChartOpen) => (
         <>
           <SEO title={`Student ${student.index}`} />
           <Chart
             isOpen={isChartOpen}
             data={studentData.labs}
-            toggleChart={toggleChart}
             index={studentData.index}
           />
           <StyledWrapper isDarkTheme={isDarkTheme}>

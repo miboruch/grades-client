@@ -74,7 +74,7 @@ const SingleMenuItem = styled.li`
 
   &:hover {
     background: ${({ theme }) => theme.color.mainGradient};
-    color: ${({ isDarkTheme }) => (isDarkTheme ? '#fff' : '#2d2d2d')};
+    color: #fff;
   }
 
   &:first-of-type {
@@ -92,7 +92,7 @@ const IconWrapper = styled.div`
   align-items: center;
 `;
 
-const SelectMenu = ({ currentIndex }) => {
+const SelectMenu = ({ currentIndex, setCompareIndex }) => {
   const {
     students: { data }
   } = useStaticQuery(graphql`
@@ -143,8 +143,24 @@ const SelectMenu = ({ currentIndex }) => {
         Porównaj
       </StyledButton>
       <MenuList ref={wrapperRef} isDarkTheme={isDarkTheme}>
+        <SingleMenuItem
+          isDarkTheme={isDarkTheme}
+          onClick={() => {
+            setCompareIndex(null);
+            toggleSelect();
+          }}
+        >
+          Wyczyść
+        </SingleMenuItem>
         {result.map((item) => (
-          <SingleMenuItem key={item.index} isDarkTheme={isDarkTheme}>
+          <SingleMenuItem
+            key={item.index}
+            isDarkTheme={isDarkTheme}
+            onClick={() => {
+              setCompareIndex(item.index);
+              toggleSelect();
+            }}
+          >
             {item.index}
           </SingleMenuItem>
         ))}

@@ -1,5 +1,6 @@
-import React, { useContext, useRef } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import {
   AreaChart,
@@ -11,7 +12,6 @@ import {
   Legend,
   ResponsiveContainer
 } from 'recharts';
-import { useOutsideClick } from '../../../utils/customHooks';
 import { ThemeContext } from '../../../context/ThemeContext';
 import SelectMenu from '../../atoms/SelectMenu/SelectMenu';
 
@@ -43,6 +43,20 @@ const SelectWrapper = styled.div`
   right: 3rem;
 `;
 
+const StyledParagraph = styled.p`
+  width: 100%;
+  text-align: center;
+  color: ${({ isDarkTheme, theme }) =>
+    isDarkTheme ? '#ccc' : theme.color.main};
+  position: absolute;
+  left: 50%;
+  bottom: 50px;
+  margin: 0;
+  transform: translate(-50%, -50%);
+  font-size: 14px;
+  letter-spacing: 1px;
+`;
+
 const StyledResponsiveContainer = styled(ResponsiveContainer)`
   display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
   padding-left: 1rem;
@@ -52,20 +66,54 @@ const StyledResponsiveContainer = styled(ResponsiveContainer)`
   }
 `;
 
-const Chart = ({ isOpen, data, toggleChart, index }) => {
+const Chart = ({ isOpen, data, index }) => {
   const { isDarkTheme } = useContext(ThemeContext);
   const chartRef = useRef(null);
+  const [compareIndex, setCompareIndex] = useState(null);
+  const [updatedData, setUpdatedData] = useState([]);
 
-  const updatedData = data.map((item, iterator) => ({
-    ...item,
-    index: index,
-    labNumber: `Lab #${data.length - iterator}`
-  }));
-  
+  useEffect(() => {
+    if (compareIndex) {
+      (async () => {
+        const result = await axios.get(
+          `http://tomaszgadek.com/api/students/${compareIndex}`
+        );
+        setUpdatedData(
+          data.map((item, iterator) => ({
+            ...item,
+            index: index,
+            index2: result.data.index,
+            labNumber: `Lab #${data.length - iterator}`,
+            points2: result.data.labs[iterator].points
+          }))
+        );
+      })();
+    }
+  }, [compareIndex]);
+
+  useEffect(() => {
+    setUpdatedData(
+      data.map((item, iterator) => ({
+        ...item,
+        index: index,
+        labNumber: `Lab #${data.length - iterator}`
+      }))
+    );
+  }, []);
+
+  const renderColorfulLegend = (entry) => {
+    const {
+      color,
+      payload: { index }
+    } = entry;
+
+    return <span style={{ color }}>{index} points</span>;
+  };
+
   return (
     <ChartWrapper isOpen={isOpen} isDarkTheme={isDarkTheme}>
       <SelectWrapper>
-        <SelectMenu currentIndex={index} />
+        <SelectMenu currentIndex={index} setCompareIndex={setCompareIndex} />
       </SelectWrapper>
       <StyledResponsiveContainer
         width='80%'
@@ -77,11 +125,11 @@ const Chart = ({ isOpen, data, toggleChart, index }) => {
           <defs>
             <linearGradient id='chartColor' x1='0' y1='0' x2='0' y2='1'>
               <stop offset='5%' stopColor={'#29bf89'} stopOpacity={0.8} />
-              <stop offset='95%' stopColor={'#184d5b'} stopOpacity={0} />
+              <stop offset='95%' stopColor={'#29bf89'} stopOpacity={0} />
             </linearGradient>
             <linearGradient id='secondStudentColor' x1='0' y1='0' x2='0' y2='1'>
-              <stop offset='5%' stopColor={'#4d4d4d'} stopOpacity={0.8} />
-              <stop offset='95%' stopColor={'#4d4d4d'} stopOpacity={0} />
+              <stop offset='5%' stopColor={'#184d5b'} stopOpacity={0.8} />
+              <stop offset='95%' stopColor={'#184d5b'} stopOpacity={0} />
             </linearGradient>
           </defs>
           <XAxis dataKey='labNumber' stroke={isDarkTheme ? '#fff' : '#aaa'} />
@@ -96,25 +144,36 @@ const Chart = ({ isOpen, data, toggleChart, index }) => {
             }}
             viewBox={{ x: 0, y: 0, width: 250, height: 60 }}
           />
-          <Legend formatter={(value) => `${index} ${value}`} />
+          <Legend
+            formatter={(value, entry) => renderColorfulLegend(entry)}
+            iconType={'plainline'}
+            iconSize={18}
+          />
           <Area
             type='monotone'
             dataKey='points'
-            stroke={isDarkTheme ? '#f5f5f5' : '#009a93'}
+            index={index}
+            stroke={isDarkTheme ? '#39af79' : '#009a93'}
             activeDot={{ r: 6 }}
             fillOpacity={1}
             fill={'url(#chartColor)'}
           />
-          {/*<Area*/}
-          {/*  type='monotone'*/}
-          {/*  dataKey='points'*/}
-          {/*  stroke={isDarkTheme ? '#f5f5f5' : '#009a93'}*/}
-          {/*  activeDot={{ r: 6 }}*/}
-          {/*  fillOpacity={1}*/}
-          {/*  fill={'url(#secondStudentColor)'}*/}
-          {/*/>*/}
+          {compareIndex && (
+            <Area
+              type='monotone'
+              dataKey='points2'
+              index={compareIndex}
+              stroke={'#184d5b'}
+              activeDot={{ r: 6 }}
+              fillOpacity={1}
+              fill={'url(#secondStudentColor)'}
+            />
+          )}
         </AreaChart>
       </StyledResponsiveContainer>
+      <StyledParagraph isDarkTheme={isDarkTheme}>
+        {compareIndex && `Porównujesz punkty ${index} oraz ${compareIndex}`}
+      </StyledParagraph>
     </ChartWrapper>
   );
 };
@@ -122,7 +181,6 @@ const Chart = ({ isOpen, data, toggleChart, index }) => {
 Chart.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   data: PropTypes.array.isRequired,
-  toggleChart: PropTypes.func.isRequired,
   index: PropTypes.string.isRequired
 };
 

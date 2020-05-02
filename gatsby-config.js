@@ -1,4 +1,5 @@
 module.exports = {
+  pathPrefix: '/grades-client',
   siteMetadata: {
     title: `TiJO`,
     description: `TiJO`,
@@ -35,7 +36,7 @@ module.exports = {
       }
     },
     {
-      resolve: "gatsby-plugin-react-svg",
+      resolve: 'gatsby-plugin-react-svg',
       options: {
         rule: {
           include: /icons/ // See below to configure properly

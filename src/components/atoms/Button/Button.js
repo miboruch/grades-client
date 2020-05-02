@@ -6,6 +6,7 @@ import { ThemeContext } from '../../../context/ThemeContext';
 const StyledButton = styled.button`
   width: 230px;
   height: 45px;
+  border: none;
   border-radius: 10px;
   background-color: transparent;
   position: relative;

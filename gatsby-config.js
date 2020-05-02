@@ -2,10 +2,11 @@ module.exports = {
   siteMetadata: {
     title: `TiJO`,
     description: `TiJO`,
-    author: `@gatsbyjs`
+    author: `@michalboruch`
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-transition-link`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -21,8 +22,8 @@ module.exports = {
         name: `gatsby-starter-default`,
         short_name: `starter`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
+        background_color: `#009a93`,
+        theme_color: `#009a93`,
         display: `minimal-ui`,
         icon: `src/images/gatsby-icon.png` // This path is relative to the root of the site.
       }
@@ -31,6 +32,14 @@ module.exports = {
       resolve: `gatsby-plugin-styled-components`,
       options: {
         // Add any options here
+      }
+    },
+    {
+      resolve: "gatsby-plugin-react-svg",
+      options: {
+        rule: {
+          include: /icons/ // See below to configure properly
+        }
       }
     }
     // this (optional) plugin enables Progressive Web App + Offline functionality

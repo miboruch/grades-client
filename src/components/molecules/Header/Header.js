@@ -13,7 +13,7 @@ import {
   StyledParagraph,
   StyledContentWrapper,
   StyledChatIcon
-} from 'Header.styles';
+} from './Header.styles';
 
 const Header = ({ handleChange, toggleChart, isUserInfoPage, isChartOpen }) => {
   const { isDarkTheme, toggleTheme } = useContext(ThemeContext);
